@@ -1,0 +1,351 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(163, 177, 138);
+  }
+  
+
+  /* NAV BARRE */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  /*  SIDE BAR (ACCUEIL, EVENT, DEFI, MESSAGERIE)*/
+  .sidebar {
+    position: fixed;
+    top: 115px;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 10px 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #3a5a40;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+  }
+
+  .nav-item {
+    font-size: 22px;
+    color: white;
+  }
+  
+  .sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 60px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  @media (min-width: 768px) {
+    .sidebar {
+      padding: 60px 0;
+    }
+  }
+  
+  /*  CONTENU PAGE */
+  .main {
+    margin-left: 220px;
+  }
+  
+  @media (max-width: 767.98px) {
+    .main {
+      margin-left: 0;
+    }
+  }
+
+  h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  p{
+    font-size: 15px;
+    text-align: center;
+  }
+  
+
+  /* ACCUEIL */
+  .card_home {
+    box-sizing: border-box;
+    width: 250px;
+    height: 350px;
+    margin-left: 35px;
+    background: rgba(217, 217, 217, 0.58);
+    border: 1px solid white;
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(6px);
+    border-radius: 17px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    font-weight: bolder;
+    color: black;
+  }
+  
+  .card_home:hover {
+    border: 1px solid black;
+    transform: scale(1.05);
+  }
+  
+  .card_home:active {
+    transform: scale(0.95) rotateZ(1.7deg);
+  }
+
+
+/*  DEFI - EVENT */
+.btn-primary {
+  width: 300px;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+}
+
+.card {
+  color: #1b1b1b;
+  width: 570px;
+  height: 450px;
+  margin-left: 35px;
+  position: relative;
+  outline: 6px solid #dad7cd;
+  border-radius: 8px;
+  line-height: 150%;
+  padding: 16px;
+  padding-left: 10px;
+  background: #344e41;
+  background-blend-mode: multiply;
+  background: linear-gradient(to top, #3a5a40, #dad7cd);
+  transition: background-color 1s ease-in-out;
+  overflow: hidden;
+}
+
+.card-front {
+  bottom: 16px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  transition: transform 1s cubic-bezier(0.785, 0.135, 0.150, 0.860);
+}
+
+.card-back {
+  transform: translateX(120%);
+  transition: transform 1s cubic-bezier(0.785, 0.135, 0.150, 0.860);
+}
+
+.title {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.title::after {
+  content: "";
+  display: block;
+  width: 50%;
+  border-radius: 50%;
+  height: 2px;
+  margin: 2px auto;
+  background-color: #1b1b1b;
+}
+
+.card:hover {
+  background-color: #1b1b1b25;
+}
+
+.card:hover .card-front {
+  transform: translateX(-100%);
+}
+
+.card:hover .card-back {
+  transform: translateX(0);
+}
+
+
+/*  TIPS */
+.card_tips {
+  width: 220px;
+  height: 150px;
+  margin-left: 30px;
+  margin-bottom: 50px;
+  padding: 0.5rem;
+  background: rgba(198, 198, 198, 0.34);
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  position: relative;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.440);
+  border-left: 2px  rgba(255, 255, 255, 0.545) outset;
+  box-shadow: -40px 50px 30px rgba(0, 0, 0, 0.280);
+  transform: skewX(5deg);
+  transition: .4s;
+  overflow: hidden;
+  color: white;
+}
+
+.card_tips:hover {
+  height: 265px;
+  transform: skew(0deg);
+}
+
+.align {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-self: flex-start;
+}
+
+.card_tips h1 {
+  font-size: 18;
+  text-align: center;
+  margin: 1.3rem;
+  color: #3a5a40;
+}
+
+/*  MESSAGERIE*/
+.messages-header {
+  background-color: #fff;
+  opacity: 0.3;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.messages-body {
+  flex: 1;
+  padding: 20px;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  height: 2.8rem;
+  width: 100%;
+  min-width: 200px;
+  max-width: 250px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, .05);
+}
+
+.input-container input {
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid  rgb(176 190 197);
+  background-color: transparent;
+  padding: 0.625rem 70px 0.625rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  color: rgb(69 90 100);
+  outline: none;
+  transition: all .15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-container input:focus {
+  border: 1px solid rgb(236 72 153 );
+}
+
+.invite-btn {
+  position: absolute;
+  width: 65px;
+  right: 4px;
+  top: 4px;
+  bottom: 4px;
+  z-index: 10;
+  border-radius: 4px;
+  background-color: rgb(236 72 153 );
+  color: #fff;
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  transition: .6s ease;
+}
+
+.invite-btn:hover {
+  right: 2px;
+  top: 2px;
+  bottom: 2px;
+  border-radius: 8px;
+}
+
+.input-container input:placeholder-shown ~ .invite-btn {
+  pointer-events: none;
+  background-color: gray;
+  opacity: 0.5;
+}
+
+
+/*  PROFIL */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  background-color: #3897f0;
+  border-color: #3897f0;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+  background-color: #2488d8;
+  border-color: #2488d8;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+label {
+  color: #555;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+input[type="email"], input[type="password"], input[type="text"], input[type="number"] {
+  background-color: #FAFAFA;
+  border: none;
+  border-radius: 3px;
+  color: #555;
+  font-size: 16px;
+  height: 50px;
+  padding: 10px;
+  width: 100%;
+}
+
+input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus, input[type="number"]:focus {
+  background-color: #F2F2F2;
+  outline: none;
+}
+
+input[type="submit"] {
+  background-color: #3897f0;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  height: 50px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+input[type="submit"]:hover, input[type="submit"]:focus, input[type="submit"]:active {
+  background-color: #2488d8;
+}
