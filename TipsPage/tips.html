@@ -69,17 +69,17 @@
         </div>
 
         <div class="row">
-          <form method="POST" action="ajouter-tip-form">
+          <form method="POST" action="add-tip">
             <label for="num_tips">Numéro :</label>
-            <input type="number" id="num_tips" name="num_tips"><br>
+            <input type="number" id="num_tips" name="num_tips" required><br>
           
             <label for="nom_tips">Nom :</label>
-            <input type="text" id="nom_tips" name="nom_tips"><br>
+            <input type="text" id="nom_tips" name="nom_tips" required><br>
           
             <label for="description">Description :</label>
-            <textarea id="description" name="description"></textarea><br>
+            <textarea id="description" name="description" required></textarea><br>
           
-            <button type="submit">Ajouter le nouveau tip</button>
+            <button id="submit" type="submit">Ajouter le nouveau tip</button>
           </form>
         </div>
 
@@ -103,7 +103,7 @@
     <script type="module">
       // Script JavaScript pour envoyer les données du formulaire au serveur via une requête POST
       document.addEventListener('DONContentLoaded', () => {
-      const form = document.getElementById('ajouter-tip-form');
+      const form = document.getElementById('add-tip');
     
       form.addEventListener('submit', (event) => {
         event.preventDefault();
