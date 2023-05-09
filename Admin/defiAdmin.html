@@ -55,38 +55,52 @@
         </nav>
 
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div class="container d-flex align-items-center justify-content-center">
-          <form class="form_admin">
-            <div class="title">Ajouter un Défi</div>
-            <label for="nom_defi"></label>
-            <input type="text" placeholder="Nom du Défi" class="input" id="nom_defi" name="nom_defi" required>
 
-            <label for="date_deb"></label>
-            <input type="date" placeholder="Date de début" class="input" id="date_deb" name="date_deb" required>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h2>DEFIS</h2>
 
-            <label for="date_fin"></label>
-            <input type="date" placeholder="Date de fin" class="input" id="date_fin" name="date_fin" required>
+          <button type="button" class="btn btn-ajout" data-toggle="modal" data-target="#myModal">Ajouter un défi</button>
+          
+          <!-- Fenêtre modale formulaire -->
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <form class="form_admin">
+                          <div class="title">Ajouter un Défi</div>
+                          <label for="nom_defi"></label>
+                          <input type="text" placeholder="Nom du défi" class="input" id="nom_defi" name="nom_defi" required>
+              
+                          <label for="date_deb"></label>
+                          <input type="date" placeholder="Date de début" class="input" id="date_deb" name="date_deb" required>
+              
+                          <label for="date_fin"></label>
+                          <input type="date" placeholder="Date de fin" class="input" id="date_fin" name="date_fin" required>
+              
+                          <label for="description"></label>
+                          <textarea id="description" name="description" required placeholder="Description"></textarea>
+              
+                          <label for="point"></label>
+                          <select id="point" name="point" class="form-control">
+                            <option>10</option>
+                            <option>20</option>
+                            <option>30</option>
+                            <option>40</option>
+                            <option>50</option>
+                            <option>60</option>
+                            <option>70</option>
+                            <option>80</option>
+                            <option>90</option>
+                            <option>100</option>
+                          </select>
+                          <button id="submit" type="submit" onclick="AddDefi(this.form)">Ajouter</button>
+              
+                        </form>
+                  </div>
+              </div>
+          </div>
 
-            <label for="description"></label>
-            <textarea id="description" name="description" required placeholder="Description"></textarea>
-
-            <label for="point"></label>
-            <select id="point" name="point" class="form-control">
-              <option>10</option>
-              <option>20</option>
-              <option>30</option>
-              <option>40</option>
-              <option>50</option>
-              <option>60</option>
-              <option>70</option>
-              <option>80</option>
-              <option>90</option>
-              <option>100</option>
-            </select>
-            <button id="submit" type="submit" onclick="AddDefi(this.form)">Ajouter</button>
-
-          </form>
-        </div>
+      </div>
 
       </main>
     </div>

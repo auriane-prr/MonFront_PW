@@ -55,38 +55,52 @@
         </nav>
 
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div class="container d-flex align-items-center justify-content-center">
-          <form class="form_admin">
-            <div class="title">Ajouter un Evènement</div>
-            <label for="nom_event"></label>
-            <input type="text" placeholder="Nom de l'évènement" class="input" id="nom_event" name="nom_event" required>
+         
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h2>EVENEMENTS</h2>
 
-            <label for="adresse"></label>
-            <input type="text" placeholder="Adresse de l'évènement" class="input" id="adresse" name="adresse" required>
+          <button type="button" class="btn btn-ajout" data-toggle="modal" data-target="#myModal">Ajouter un évènement</button>
+          
+          <!-- Fenêtre modale formulaire -->
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <form class="form_admin">
+                          <div class="title">Ajouter un Evènement</div>
+                          <label for="nom_event"></label>
+                          <input type="text" placeholder="Nom de l'évènement" class="input" id="nom_event" name="nom_event" required>
+              
+                          <label for="adresse"></label>
+                          <input type="text" placeholder="Adresse de l'évènement" class="input" id="adresse" name="adresse" required>
+              
+                          <label for="date"></label>
+                          <input type="date" class="input" id="date" name="date" required>
+              
+                          <label for="description"></label>
+                          <textarea id="description" name="description" required placeholder="Description"></textarea>
+              
+                          <label for="point"></label>
+                          <select id="point" name="point" class="form-control">
+                            <option>10</option>
+                            <option>20</option>
+                            <option>30</option>
+                            <option>40</option>
+                            <option>50</option>
+                            <option>60</option>
+                            <option>70</option>
+                            <option>80</option>
+                            <option>90</option>
+                            <option>100</option>
+                          </select>
+                          <button id="submit" type="submit" onclick="AddEvent(this.form)">Ajouter</button>
+              
+                        </form>
+                  </div>
+              </div>
+          </div>
 
-            <label for="date"></label>
-            <input type="date" placeholder="Date de l'évènement" class="input" id="date" name="date" required>
-
-            <label for="description"></label>
-            <textarea id="description" name="description" required placeholder="Description"></textarea>
-
-            <label for="point"></label>
-            <select id="point" name="point" class="form-control">
-              <option>10</option>
-              <option>20</option>
-              <option>30</option>
-              <option>40</option>
-              <option>50</option>
-              <option>60</option>
-              <option>70</option>
-              <option>80</option>
-              <option>90</option>
-              <option>100</option>
-            </select>
-            <button id="submit" type="submit" onclick="AddEvent(this.form)">Ajouter</button>
-
-          </form>
-        </div>
+      </div>
 
       </main>
     </div>

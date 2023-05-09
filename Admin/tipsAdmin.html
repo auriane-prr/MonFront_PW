@@ -55,17 +55,30 @@
         </nav>
 
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div class="container d-flex align-items-center justify-content-center">
-          <form class="form_admin">
-            <div class="title">Ajouter un tips</div>
-            <label for="nom_tips"></label>
-            <input type="text" placeholder="Nom du tips" class="input" id="nom_tips" name="nom_tips" required>
-            <label for="description"></label>
-            <textarea id="description" name="description" required placeholder="Description"></textarea>
-            <button id="submit" type="submit" onclick="AddTip(this.form)">Ajouter</button>
-          </form>
-        </div>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h2>TIPS</h2>
 
+          <button type="button" class="btn btn-ajout" data-toggle="modal" data-target="#myModal">Ajouter un tips</button>
+          
+          <!-- Fenêtre modale formulaire -->
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <form class="form_admin">
+                          <div class="title">Ajouter un Tips</div>
+                          <label for="nom_tips"></label>
+                          <input type="text" placeholder="Nom du tips" class="input" id="nom_tips" name="nom_tips" required>
+                          <label for="description"></label>
+                          <textarea id="description" name="description" required placeholder="Description"></textarea>
+                          <button id="submit" type="submit" onclick="AddTip(this.form)">Ajouter</button>
+              
+                        </form>
+                  </div>
+              </div>
+          </div>
+
+      </div>
       </main>
     </div>
 
