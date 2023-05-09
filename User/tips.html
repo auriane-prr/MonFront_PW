@@ -12,7 +12,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="http://127.0.0.1:5500/MonFront_PW/HomePage/home.html">
+        <a class="navbar-brand" href="http://127.0.0.1:5500/MonFront_PW/User/home.html">
           <img src="/MonFront_PW/logo.png" alt="Logo" width="50" height="50">
           TerraShift
         </a>
@@ -22,19 +22,19 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/ProfilPage/profil.html">Profil</a>
+              <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/profil.html">Profil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/EventPage/event.html">Event</a>
+              <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/event.html">Event</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/DefiPage/defi.html">Defi</a>
+              <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/defi.html">Defi</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/TipsPage/tips.html">Tips</a>
+              <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/tips.html">Tips</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/Messagerie/chat.html">Messagerie</a>
+              <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/chat.html">Messagerie</a>
             </li>
           </ul>
         </div>
@@ -61,23 +61,34 @@
         </nav>
 
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <h2>Tips</h2>
+        
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <button class="btn btn-primary d-block mx-auto mb-3">
-            <i class="fas fa-plus"></i> Nouveau Tips
-          </button>
+          <h2>TIPS</h2>
         </div>
 
         <div class="row">
-          <form>          
-            <label for="nom_tips">Nom :</label>
-            <input type="text" id="nom_tips" name="nom_tips" required><br>
-          
-            <label for="description">Description :</label>
-            <textarea id="description" name="description" required></textarea><br>
-          
-            <button id="submit" type="submit" onclick="AddTip(this.form)">Ajouter le nouveau tip</button>
-          </form>
+          <div class="col-md-12">
+            <div class="card_tips d-inline-block float-left">
+              <div class="align"></div>            
+              <h1>TIPS 1 - nom_tips</h1>
+              <p>Description Description Description Description Description Description Description Description Description Description Description </p>
+            </div>
+            <div class="card_tips d-inline-block float-left">
+              <div class="align"></div>            
+              <h1>TIPS 2 - nom_tips</h1>
+              <p>Description Description Description Description Description Description Description Description Description Description Description </p>
+            </div>
+            <div class="card_tips d-inline-block float-left">
+              <div class="align"></div>            
+              <h1>TIPS 3 - nom_tips</h1>
+              <p>Description Description Description Description Description Description Description Description Description Description Description </p>
+            </div>
+            <div class="card_tips d-inline-block float-left">
+              <div class="align"></div>            
+              <h1>TIPS 4 - nom_tips</h1>
+              <p>Description Description Description Description Description Description Description Description Description Description Description </p>
+            </div>
+          </div>
         </div>
 
         <div class="row">
@@ -98,25 +109,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
   </body>
-
-  <script>
-    // Script JavaScript pour envoyer les données du formulaire au serveur via une requête POST
-
-      function AddTip(form){
-        var nom_tips = form.nom_tips.value;
-        var description = form.description.value;
-        console.log(nom_tips);
-        console.log(description);
-  
-        fetch('http://localhost:3500/api/tips', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({"nom_tips": nom_tips, "description": description })
-        })
-        .then(response => response.text())
-        .then(message => alert(message))
-        .catch(error => console.error(error));
-      };
-
-  </script>
 </html>
