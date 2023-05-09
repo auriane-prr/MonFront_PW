@@ -69,17 +69,14 @@
         </div>
 
         <div class="row">
-          <form method="POST" action="add-tip">
-            <label for="num_tips">Numéro :</label>
-            <input type="number" id="num_tips" name="num_tips" required><br>
-          
+          <form>          
             <label for="nom_tips">Nom :</label>
             <input type="text" id="nom_tips" name="nom_tips" required><br>
           
             <label for="description">Description :</label>
             <textarea id="description" name="description" required></textarea><br>
           
-            <button id="submit" type="submit">Ajouter le nouveau tip</button>
+            <button id="submit" type="submit" onclick="AddTip(this.form)">Ajouter le nouveau tip</button>
           </form>
         </div>
 
@@ -100,31 +97,26 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-    <script type="module">
-      // Script JavaScript pour envoyer les données du formulaire au serveur via une requête POST
-      document.addEventListener('DONContentLoaded', () => {
-      const form = document.getElementById('add-tip');
-    
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
-    
-        const num_tips = document.getElementById('num_tips').value;
-        const nom_tips = document.getElementById('nom_tips').value;
-        const description = document.getElementById('description').value;
-    
+  </body>
+
+  <script>
+    // Script JavaScript pour envoyer les données du formulaire au serveur via une requête POST
+
+      function AddTip(form){
+        var nom_tips = form.nom_tips.value;
+        var description = form.description.value;
+        console.log(nom_tips);
+        console.log(description);
+  
         fetch('http://localhost:3500/api/tips', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ num_tips, nom_tips, description })
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({"nom_tips": nom_tips, "description": description })
         })
-          .then(response => response.text())
-          .then(message => alert(message))
-          .catch(error => console.error(error));
-      });
-    });
-    </script>
+        .then(response => response.text())
+        .then(message => alert(message))
+        .catch(error => console.error(error));
+      };
 
-  </body>
+  </script>
 </html>
