@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>Eco-Friendly App</title>
+    <title>TerraShift</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../style.css">
   </head>
@@ -13,8 +13,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="http://127.0.0.1:5500/MonFront_PW/Admin/homeAdmin.html">
-          <img src="/MonFront_PW/logo.png" alt="Logo" width="50" height="50">
-          TerraShift
+          <img src="/MonFront_PW/Logo.PNG" alt="logo" height="50px">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -38,31 +37,15 @@
     <div class="container-fluid">
       <div class="row ">
 
-        <nav class="col-md-2 d-none d-md-block sidebar">
-          <ul class="nav flex-column">
-            <li class="nav-item"> Evenements en cours
-              <p></p>
-              <p>#num-event - nom-event - date-fin - lieu</p>
-              <p>#num-event - nom-event - date-fin - lieu</p>
-              <p>#num-event - nom-event - date-fin - lieu</p>
-            </li>
-            <li class="nav-item"> Défis en cours
-              <p></p>
-              <p>#num-defi - nom-defi - date-fin</p>
-              <p>#num-defi - nom-defi - date-fin=</p>
-            </li>
-          </ul>
-        </nav>
-
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <main role="main">
 
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h2>DEFIS</h2>
+          <h2>Défis</h2>
 
-          <button type="button" class="btn btn-ajout" data-toggle="modal" data-target="#myModal">Ajouter un défi</button>
+          <button type="button" class="btn btn-ajout" data-toggle="modal" data-target="#ajout-defi">Ajouter un défi</button>
           
           <!-- Fenêtre modale formulaire -->
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal fade" id="ajout-defi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                   <div class="modal-content">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -101,9 +84,43 @@
           </div>
 
       </div>
+      <div id="defis-container"></div>
 
-      </main>
-    </div>
+      <button type="button" class="btn btn-ajout mt-3" data-toggle="modal" data-target="#supp-defi">Supprimer</button>
+
+      <div class="modal" id="supp-defi">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <!-- En-tête de la fenêtre modale -->
+            <div class="modal-header">
+              <h5 class="modal-title">Etes-vous sur de vouloir supprimer ce défi ?</h5>
+            </div>
+            <!-- Corps de la fenêtre modale -->
+            <div class="modal-body">
+              <div class="radio-inputs">
+                <label class="radio">
+                  <input type="radio" name="radio" checked="">
+                  <span class="name">OUI</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="radio">
+                  <span class="name">NON</span>
+                </label>
+              </div>                    
+            </div>
+            <!-- Pied de la fenêtre modale -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-ajout">Valider</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    
+  </main>
+</div>
+</div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
@@ -112,8 +129,8 @@
   </body>
 
   <script>
-    // Script JavaScript pour envoyer les données du formulaire au serveur via une requête POST
 
+    // REQUETE POST
       function AddDefi(form){
         var nom_defi = form.nom_defi.value;
         var date_deb = form.date_deb.value;
@@ -130,6 +147,63 @@
         .then(message => alert(message))
         .catch(error => console.error(error));
       };
+
+      // REQUETE GET
+      const defisContainer = document.getElementById('defis-container');
+
+fetch('http://localhost:3500/api/defi',{
+  method: 'GET',
+})
+.then(response => response.json())
+.then(defis => {
+defis.forEach(defi => {
+const card = document.createElement('div');
+card.classList.add('card');
+
+const cardRecto = document.createElement('div');
+cardRecto.classList.add('card-front');
+
+const title = document.createElement('div');
+title.classList.add('title');
+title.innerText = defi.nom_defi;
+
+const date_deb = document.createElement('div');
+date_deb.classList.add('date_deb');
+const eventDated = new Date(defi.date_deb);
+const optionsd = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+const formattedDated = eventDated.toLocaleDateString('fr-FR', optionsd);
+date_deb.innerText = formattedDated;
+
+const date_fin = document.createElement('div');
+date_fin.classList.add('date_fin');
+const eventDatef = new Date(defi.date_fin);
+const optionsf = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+const formattedDatef = eventDatef.toLocaleDateString('fr-FR', optionsf);
+date_fin.innerText = formattedDatef;
+
+const point = document.createElement('div');
+point.classList.add('adr-pt', 'mb-2', 'text-mute');
+point.innerText = defi.point + ' points';
+
+const cardVerso = document.createElement('div');
+cardVerso.classList.add('card-back');
+
+const description = document.createElement('div');
+description.classList.add('desc', 'mb-2', 'text-mute');
+description.innerText = defi.description;
+
+cardRecto.appendChild(title);
+cardRecto.appendChild(date_deb);
+cardRecto.appendChild(date_fin);
+cardRecto.appendChild(point);
+cardVerso.appendChild(description);
+
+card.appendChild(cardVerso);
+card.appendChild(cardRecto)
+defisContainer.appendChild(card);
+});
+})
+.catch(error => console.error(error));
 
   </script>
 </html>

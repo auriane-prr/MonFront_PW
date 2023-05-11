@@ -13,7 +13,6 @@ body {
     padding: 20px;
   }
 
-
   /*  SIDE BAR (ACCUEIL, EVENT, DEFI, MESSAGERIE)*/
   .sidebar {
     position: fixed;
@@ -29,8 +28,9 @@ body {
   }
 
   .nav-item {
-    font-size: 22px;
-    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 25px;
   }
   
   .sidebar-sticky {
@@ -59,18 +59,24 @@ body {
     }
   }
 
-  h1 {
-    font-size: 36px;
+  h2 /*TITRE PAGE*/{
+    font-size: 50px;
+    letter-spacing: 10px;
+    font-family: 'Courier New', Courier, monospace;
     text-align: center;
-    margin-top: 15px;
+    margin: 0 auto;
   }
 
   p{
     font-size: 15px;
     text-align: center;
   }
-  
 
+  @font-face {
+    font-family: 'Grafton';
+    src: url('/MonFront_PW/Police/Grafton-Regular.ttf') format('truetype');
+  }
+  
   /* ACCUEIL */
   .card_home {
     box-sizing: border-box;
@@ -102,35 +108,48 @@ body {
     transform: scale(0.95) rotateZ(1.7deg);
   }
 
+    /* EVENT */
+
+    #events-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+     /* DEFI */
+
+     #defis-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  
 
 /*  DEFI - EVENT */
-.btn-primary {
-  width: 300px;
-  margin: 0 auto;
-  display: block;
-  text-align: center;
-}
-
 .card {
   color: #1b1b1b;
   width: 570px;
   height: 450px;
   margin-left: 35px;
   position: relative;
-  outline: 6px solid #dad7cd;
+  outline: 4px solid #dad7cd;
   border-radius: 8px;
-  line-height: 150%;
   padding: 16px;
-  padding-left: 10px;
   background: #344e41;
   background-blend-mode: multiply;
   background: linear-gradient(to top, #3a5a40, #dad7cd);
   transition: background-color 1s ease-in-out;
-  overflow: hidden;
+  overflow: hidden;  
+  float: left;
+  margin-bottom: 50px;
+}
+
+.card:not(:last-child) {
+  margin-right: 20px;
 }
 
 .card-front {
-  bottom: 16px;
+  bottom: 50px;
   left: 0;
   position: absolute;
   width: 100%;
@@ -144,8 +163,9 @@ body {
 }
 
 .title {
-  font-size: 1.3rem;
-  font-weight: bold;
+  font-size: 30px;
+  font-family: 'Grafton';
+  letter-spacing: 2px;
 }
 
 .title::after {
@@ -156,6 +176,24 @@ body {
   height: 2px;
   margin: 2px auto;
   background-color: #1b1b1b;
+}
+
+.adr-pt {
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.date {
+  font-size: 20px;
+  color: #333D29;
+  margin-bottom: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.desc {
+  font-size: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: justify;
 }
 
 .card:hover {
@@ -438,9 +476,51 @@ select:focus {
   background-color: #3a5a40;
   border-color: #3a5a40;
   color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  margin-right: 250px;
 }
 
 .btn-ajout:hover {
   opacity: 0.7;
 }
     
+
+/* SUPPRIMER */
+.radio-inputs {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 0.5rem;
+  background-color: #EEE;
+  box-sizing: border-box;
+  box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+  padding: 0.25rem;
+  width: 300px;
+  font-size: 14px;
+}
+
+.radio-inputs .radio {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.radio-inputs .radio input {
+  display: none;
+}
+
+.radio-inputs .radio .name {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  border: none;
+  padding: .5rem 0;
+  color: rgba(51, 65, 85, 1);
+  transition: all .15s ease-in-out;
+}
+
+.radio-inputs .radio input:checked + .name {
+  background-color: #fff;
+  font-weight: 600;
+}
