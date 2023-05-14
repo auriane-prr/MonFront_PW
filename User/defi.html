@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>Eco-Friendly App</title>
+    <title>TerraShift</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../style.css">
   </head>
@@ -13,27 +13,26 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="http://127.0.0.1:5500/MonFront_PW/User/home.html">
-          <img src="/MonFront_PW/logo.png" alt="Logo" width="50" height="50">
-          TerraShift
+          <img src="/MonFront_PW/Logo.PNG" alt="logo" height="50px">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item">
+            <li class="nav-user">
               <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/profil.html">Profil</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-user">
               <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/event.html">Event</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-user">
               <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/defi.html">Defi</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-user">
               <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/tips.html">Tips</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-user">
               <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/chat.html">Messagerie</a>
             </li>
           </ul>
@@ -42,84 +41,107 @@
     </nav>
 
     <div class="container-fluid">
-      <div class="row">
-        <nav class="col-md-2 d-none d-md-block sidebar">
-          <ul class="nav flex-column">
-            <li class="nav-item"> Défis en cours
-              <p></p>
-              <p>#num-defi - nom-defi - date-fin</p>
-              <p>#num-defi - nom-defi - date-fin</p>
-              <p>#num-defi - nom-defi - date-fin</p>
-            </li>
-            <li class="nav-item"> Défis à venir
-              <p></p>
-              <p>#num-defi - nom-defi - date-fin</p>
-              <p>#num-defi - nom-defi - date-fin</p>
-            </li>
-          </ul>
-        </nav>
+      <div class="row ">
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-          
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h2>DEFI</h2>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card d-inline-block float-left">
-                <div class="card-front">
-                  <p class="title">DEFI 1 - nom_defi</p>
-                  <p class="subtitle">date_deb, date_fin, points + icons</p>
-                </div>
-                <div class="card-back">
-                  <p>Description du défi + bouton inscription (uiverse.io, coche)</p>
-                </div>
-              </div>
-              <div class="card d-inline-block float-left">
-                <div class="card-front">
-                  <p class="title">DEFI 2 - nom_defi</p>
-                  <p class="subtitle">date_deb, date_fin, points + icons</p>
-                </div>
-                <div class="card-back">
-                  <p>Description du défi + bouton inscription (uiverse.io, coche)</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
+      <main role="main">
+
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h2>Défis</h2>
       </div>
-    </div>
 
-    <script>
-        document.addEventListener('DONContentLoaded', () => {
-          const defi = document.getAllDefi('défis');
-    
-          defi.addEventListener('ok', async (defi) => {
-            defi.preventDefault();
-            const nom_defi = document.getElementById('nom_defi').value;
-            const date_deb = document.getElementById('date_deb').value;
-            const date_fin = document.getElementById('date_fin').value;
-            const desc = document.getElementById('desc').value;
-            const points = document.getElementById('points').value;
-    
-            const resp = await fetch('http://localhost:3500/api/defi', {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'app/json'
-              },
-              body: JSON.stringify({nom_defi, date_deb, date_fin, desc, points})
-            });
-    
-            const mess = await resp.text();
-            alert(mess);
-          })
-        })
-      </script>
+      <div id="defis-container"></div>
+
+  </main>
+</div>
+</div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
   </body>
+
+  <script>
+
+    // REQUETE POST
+      function AddDefi(form){
+        var nom_defi = form.nom_defi.value;
+        var date_deb = form.date_deb.value;
+        var date_fin = form.date_fin.value;
+        var description = form.description.value;
+        var point = form.point.value;
   
+        fetch('http://localhost:3500/api/defi', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({"nom_defi": nom_defi, "date_deb": date_deb, "date_fin": date_fin, "description": description, "point": point })
+        })
+        .then(response => response.text())
+        .then(message => alert(message))
+        .catch(error => console.error(error));
+      };
+
+      // REQUETE GET
+      const defisContainer = document.getElementById('defis-container');
+
+fetch('http://localhost:3500/api/defi',{
+  method: 'GET',
+})
+.then(response => response.json())
+.then(defis => {
+defis.forEach(defi => {
+const card = document.createElement('div');
+card.classList.add('card');
+
+const cardRecto = document.createElement('div');
+cardRecto.classList.add('card-front');
+
+const title = document.createElement('div');
+title.classList.add('title');
+title.innerText = defi.nom_defi;
+
+const date_deb = document.createElement('div');
+date_deb.classList.add('date');
+const eventDated = new Date(defi.date_deb);
+const optionsd = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+const formattedDated = eventDated.toLocaleDateString('fr-FR', optionsd);
+date_deb.innerText = 'Début : ' + formattedDated;
+
+const date_fin = document.createElement('div');
+date_fin.classList.add('date');
+const eventDatef = new Date(defi.date_fin);
+const optionsf = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+const formattedDatef = eventDatef.toLocaleDateString('fr-FR', optionsf);
+date_fin.innerText = 'Fin : ' + formattedDatef;
+
+const point = document.createElement('div');
+point.classList.add('adr-pt', 'mb-2', 'text-mute');
+point.innerText = defi.point + ' points';
+
+const cardVerso = document.createElement('div');
+cardVerso.classList.add('card-back');
+
+const description = document.createElement('div');
+description.classList.add('desc', 'mb-2', 'text-mute');
+description.innerText = defi.description;
+
+const btn_insc = document.createElement('button');
+btn_insc.classList.add('btn', 'btn-mod', 'mt-3');
+btn_insc.innerText = 'Je participe';
+
+cardRecto.appendChild(title);
+cardRecto.appendChild(date_deb);
+cardRecto.appendChild(date_fin);
+cardRecto.appendChild(point);
+cardVerso.appendChild(description);
+cardVerso.appendChild(btn_insc);
+
+card.appendChild(cardVerso);
+card.appendChild(cardRecto)
+defisContainer.appendChild(card);
+});
+})
+.catch(error => console.error(error));
+
+  </script>
 </html>
