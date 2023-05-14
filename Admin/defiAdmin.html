@@ -20,13 +20,13 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item">
+            <li class="nav-admin">
               <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/Admin/eventAdmin.html">Event</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-admin">
               <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/Admin/defiAdmin.html">Defi</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-admin">
               <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/Admin/tipsAdmin.html">Tips</a>
             </li>
           </ul>
@@ -42,7 +42,7 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h2>Défis</h2>
 
-          <button type="button" class="btn btn-ajout" data-toggle="modal" data-target="#ajout-defi">Ajouter un défi</button>
+          <button type="button" class="btn btn-mod" data-toggle="modal" data-target="#ajout-defi">Ajouter un défi</button>
           
           <!-- Fenêtre modale formulaire -->
           <div class="modal fade" id="ajout-defi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -86,38 +86,6 @@
       </div>
       <div id="defis-container"></div>
 
-      <button type="button" class="btn btn-ajout mt-3" data-toggle="modal" data-target="#supp-defi">Supprimer</button>
-
-      <div class="modal" id="supp-defi">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <!-- En-tête de la fenêtre modale -->
-            <div class="modal-header">
-              <h5 class="modal-title">Etes-vous sur de vouloir supprimer ce défi ?</h5>
-            </div>
-            <!-- Corps de la fenêtre modale -->
-            <div class="modal-body">
-              <div class="radio-inputs">
-                <label class="radio">
-                  <input type="radio" name="radio" checked="">
-                  <span class="name">OUI</span>
-                </label>
-                <label class="radio">
-                  <input type="radio" name="radio">
-                  <span class="name">NON</span>
-                </label>
-              </div>                    
-            </div>
-            <!-- Pied de la fenêtre modale -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-ajout">Valider</button>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    
   </main>
 </div>
 </div>
@@ -168,18 +136,18 @@ title.classList.add('title');
 title.innerText = defi.nom_defi;
 
 const date_deb = document.createElement('div');
-date_deb.classList.add('date_deb');
+date_deb.classList.add('date');
 const eventDated = new Date(defi.date_deb);
 const optionsd = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 const formattedDated = eventDated.toLocaleDateString('fr-FR', optionsd);
-date_deb.innerText = formattedDated;
+date_deb.innerText = 'Début : ' + formattedDated;
 
 const date_fin = document.createElement('div');
-date_fin.classList.add('date_fin');
+date_fin.classList.add('date');
 const eventDatef = new Date(defi.date_fin);
 const optionsf = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 const formattedDatef = eventDatef.toLocaleDateString('fr-FR', optionsf);
-date_fin.innerText = formattedDatef;
+date_fin.innerText = 'Fin : ' + formattedDatef;
 
 const point = document.createElement('div');
 point.classList.add('adr-pt', 'mb-2', 'text-mute');
@@ -192,11 +160,21 @@ const description = document.createElement('div');
 description.classList.add('desc', 'mb-2', 'text-mute');
 description.innerText = defi.description;
 
+const btn_supp = document.createElement('button');
+btn_supp.classList.add('btn', 'btn-mod', 'mt-3');
+btn_supp.innerText = 'Supprimer';
+
+const btn_modif = document.createElement('button');
+btn_modif.classList.add('btn', 'btn-mod', 'mt-3');
+btn_modif.innerText = 'Modifier';
+
 cardRecto.appendChild(title);
 cardRecto.appendChild(date_deb);
 cardRecto.appendChild(date_fin);
 cardRecto.appendChild(point);
 cardVerso.appendChild(description);
+cardVerso.appendChild(btn_supp);
+cardVerso.appendChild(btn_modif);
 
 card.appendChild(cardVerso);
 card.appendChild(cardRecto)

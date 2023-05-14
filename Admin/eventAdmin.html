@@ -3,9 +3,10 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>Terrashift</title>
+    <title>TerraShift</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../style.css">
+
   </head>
 
   <body>
@@ -19,13 +20,13 @@
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item">
+              <li class="nav-admin">
                 <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/Admin/eventAdmin.html">Event</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-admin">
                 <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/Admin/defiAdmin.html">Defi</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-admin">
                 <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/Admin/tipsAdmin.html">Tips</a>
               </li>
             </ul>
@@ -41,7 +42,7 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h2 class="text-center text-md-left mb-0">Évènement</h2>
 
-            <button type="button" class="btn btn-ajout mt-3" data-toggle="modal" data-target="#ajout-event">Ajouter un évènement</button>
+            <button type="button" class="btn btn-mod mt-3" data-toggle="modal" data-target="#ajout-event">Ajouter un évènement</button>
             
             <!-- Fenêtre modale formulaire -->
             <div class="modal fade" id="ajout-event" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -88,38 +89,6 @@
         </div>
 
           <div id="events-container"></div>
-
-            <button type="button" class="btn btn-ajout mt-3" data-toggle="modal" data-target="#supp-event">Supprimer</button>
-
-            <div class="modal" id="supp-event">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <!-- En-tête de la fenêtre modale -->
-                  <div class="modal-header">
-                    <h5 class="modal-title">Etes-vous sur de vouloir supprimer cet évènement ?</h5>
-                  </div>
-                  <!-- Corps de la fenêtre modale -->
-                  <div class="modal-body">
-                    <div class="radio-inputs">
-                      <label class="radio">
-                        <input type="radio" name="radio" checked="">
-                        <span class="name">OUI</span>
-                      </label>
-                      <label class="radio">
-                        <input type="radio" name="radio">
-                        <span class="name">NON</span>
-                      </label>
-                    </div>                    
-                  </div>
-                  <!-- Pied de la fenêtre modale -->
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-ajout">Valider</button>
-                  </div>
-
-                </div>
-              </div>
-            </div>
         
       </main>
     </div>
@@ -132,79 +101,112 @@
 
   </body>
 
-  <script>
-    // Script JavaScript pour envoyer les données du formulaire au serveur via une requête POST
+<script>
+  //REQUETE POST EVENT
+function AddEvent(form){
+    var nom_event = form.nom_event.value;
+    var adresse = form.adresse.value;
+    var date = form.date.value;
+    var description = form.description.value;
+    var point = form.point.value;
 
-      function AddEvent(form){
-        var nom_event = form.nom_event.value;
-        var adresse = form.adresse.value;
-        var date = form.date.value;
-        var description = form.description.value;
-        var point = form.point.value;
-  
-        fetch('http://localhost:3500/api/event', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({"nom_event": nom_event, "adresse": adresse, "date": date, "description": description, "point": point }),
-        })
-        .then(response => response.text())
-        .then(message => alert(message))
-        .catch(error => console.error(error));
-      };
+    fetch('http://localhost:3500/api/event', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({"nom_event": nom_event, "adresse": adresse, "date": date, "description": description, "point": point }),
+    })
+    .then(response => response.text())
+    .then(message => alert(message))
+    .catch(error => console.error(error));
+  };
 
-      //REQUETE GET
-      const eventsContainer = document.getElementById('events-container');
+  //REQUETE GET EVENT
+    const eventsContainer = document.getElementById('events-container');
 
-      fetch('http://localhost:3500/api/event',{
-        method: 'GET',
-      })
-      .then(response => response.json())
-      .then(events => {
-      events.forEach(event => {
-      const card = document.createElement('div');
-      card.classList.add('card');
+    fetch('http://localhost:3500/api/event',{
+    method: 'GET',
+    })
+    .then(response => response.json())
+    .then(events => {
+        events.forEach(event => {
+            const card = document.createElement('div');
+            card.classList.add('card');
 
-      const cardRecto = document.createElement('div');
-      cardRecto.classList.add('card-front');
+            const cardRecto = document.createElement('div');
+            cardRecto.classList.add('card-front');
 
-      const title = document.createElement('div');
-      title.classList.add('title');
-      title.innerText = event.nom_event;
+            const title = document.createElement('div');
+            title.classList.add('title');
+            title.innerText = event.nom_event;
 
-      const date = document.createElement('div');
-      date.classList.add('date');
-      const eventDate = new Date(event.date);
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      const formattedDate = eventDate.toLocaleDateString('fr-FR', options);
-      date.innerText = formattedDate;
+            const date = document.createElement('div');
+            date.classList.add('date');
+            const eventDate = new Date(event.date);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = eventDate.toLocaleDateString('fr-FR', options);
+            date.innerText = formattedDate;
 
-      const address = document.createElement('div');
-      address.classList.add('adr-pt', 'mb-2', 'text-mute');
-      address.innerText = event.adresse;
+            const address = document.createElement('div');
+            address.classList.add('adr-pt', 'mb-2', 'text-mute');
+            address.innerText = event.adresse;
 
-      const point = document.createElement('div');
-      point.classList.add('adr-pt', 'mb-2', 'text-mute');
-      point.innerText = event.point + ' points';
+            const point = document.createElement('div');
+            point.classList.add('adr-pt', 'mb-2', 'text-mute');
+            point.innerText = event.point + ' points';
 
-      const cardVerso = document.createElement('div');
-      cardVerso.classList.add('card-back');
+            const cardVerso = document.createElement('div');
+            cardVerso.classList.add('card-back');
 
-      const description = document.createElement('div');
-      description.classList.add('desc', 'mb-2', 'text-mute');
-      description.innerText = event.description;
+            const description = document.createElement('div');
+            description.classList.add('desc', 'mb-2', 'text-mute');
+            description.innerText = event.description;
 
-      cardRecto.appendChild(title);
-      cardRecto.appendChild(date);
-      cardRecto.appendChild(address);
-      cardRecto.appendChild(point);
-      cardVerso.appendChild(description);
+            const btn_supp = document.createElement('button');
+            btn_supp.classList.add('btn', 'btn-mod', 'mt-3');
+            btn_supp.innerText = 'Supprimer';
+            btn_supp.addEventListener('click', () => {
+              // REQUETE DELETE EVENT
+              fetch(`http://localhost:3500/api/event/${event.nom_event}`,{
+                method: 'DELETE',
+              })
+                .then(response => {
+                  if (response.ok) {
+                    const item = document.getElementById(nom_event);
+                    if (item) {
+                      item.parentNode.removeChild(item);
+                      console.log('Événement supprimé');
+                    }
+                    // Si la suppression réussit, supprimez l'élément de la page.
+                  } else {
+                    // Si la suppression échoue, affichez un message d'erreur.
+                    console.error(`La suppression a échoué avec le code d'état ${response.status}`);
+                  }
+                })
+                .catch(error => {
+                  // Si une erreur survient, affichez-la dans la console.
+                  console.error('Une erreur est survenue lors de la suppression de l\'événement', error);
+                });
+            });
 
-      card.appendChild(cardVerso);
-      card.appendChild(cardRecto)
-      eventsContainer.appendChild(card);
-    });
-  })
-  .catch(error => console.error(error));
+            const btn_modif = document.createElement('button');
+            btn_modif.classList.add('btn','btn-mod', 'mt-3');
+            btn_modif.innerText = 'Modifier';
 
-  </script>
+            cardRecto.appendChild(title);
+            cardRecto.appendChild(date);
+            cardRecto.appendChild(address);
+            cardRecto.appendChild(point);
+            cardVerso.appendChild(description);
+            cardVerso.appendChild(btn_supp);
+            cardVerso.appendChild(btn_modif);
+
+            card.appendChild(cardVerso);
+            card.appendChild(cardRecto)
+        eventsContainer.appendChild(card);
+        });
+    })
+    .catch(error => console.error(error));
+
+</script>
+
 </html>

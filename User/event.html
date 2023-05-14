@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>Eco-Friendly App</title>
+    <title>TerraShift</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../style.css">
   </head>
@@ -13,27 +13,26 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="http://127.0.0.1:5500/MonFront_PW/User/home.html">
-          <img src="/MonFront_PW/logo.png" alt="Logo" width="50" height="50">
-          TerraShift
+          <img src="/MonFront_PW/Logo.PNG" alt="logo" height="50px">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item">
+            <li class="nav-user">
               <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/profil.html">Profil</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-user">
               <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/event.html">Event</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-user">
               <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/defi.html">Defi</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-user">
               <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/tips.html">Tips</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-user">
               <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/chat.html">Messagerie</a>
             </li>
           </ul>
@@ -44,71 +43,8 @@
     <div class="container-fluid">
       <div class="row">
 
-        <nav class="col-md-2 d-none d-md-block sidebar">
-          <ul class="nav flex-column">
-            <li class="nav-item"> Evenements en cours
-              <p></p>
-              <p>#num-event - nom-event - date-fin - lieu</p>
-              <p>#num-event - nom-event - date-fin - lieu</p>
-              <p>#num-event - nom-event - date-fin - lieu</p>
-            </li>
-            <li class="nav-item"> Evenements à venir
-              <p></p>
-              <p>#num-event - nom-event - date-fin - lieu</p>
-              <p>#num-event - nom-event - date-fin - lieu</p>
-            </li>
-          </ul>
-      </nav>
-
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h2>EVENEMENTS</h2>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card d-inline-block float-left">
-              <div class="card-front">
-                <p class="title">Evenement 1 - nom_event</p>
-                <p class="subtitle">date_deb, date_fin, lieu, points + icons</p>
-              </div>
-              <div class="card-back">
-                <p>Description de l'évènement + bouton inscription (uiverse.io, coche)</p>
-              </div>
-            </div>
-            <div class="card d-inline-block float-left">
-              <div class="card-front">
-                <p class="title">Evenement 2 - nom_event</p>
-                <p class="subtitle">date_deb, date_fin, lieu, points + icons</p>
-              </div>
-              <div class="card-back">
-                <p>Description de l'évènement + bouton inscription (uiverse.io, coche)</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card d-inline-block float-left">
-              <div class="card-front">
-                <p class="title">Evenement 3 - nom_event</p>
-                <p class="subtitle">date_deb, date_fin, lieu, points + icons</p>
-              </div>
-              <div class="card-back">
-                <p>Description de l'évènement + bouton inscription (uiverse.io, coche)</p>
-              </div>
-            </div>
-            <div class="card d-inline-block float-left">
-              <div class="card-front">
-                <p class="title">Evenement 4 - nom_event</p>
-                <p class="subtitle">date_deb, date_fin, lieu, points + icons</p>
-              </div>
-              <div class="card-back">
-                <p>Description de l'évènement + bouton inscription (uiverse.io, coche)</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div id="events-container"></div>
       </main>
     </div>
   </div>
@@ -119,4 +55,62 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
   </body>
+
+  <script>
+  //REQUETE GET EVENT
+      const eventsContainer = document.getElementById('events-container');
+  
+      fetch('http://localhost:3500/api/event',{
+      method: 'GET',
+      })
+      .then(response => response.json())
+      .then(events => {
+          events.forEach(event => {
+              const card = document.createElement('div');
+              card.classList.add('card');
+  
+              const cardRecto = document.createElement('div');
+              cardRecto.classList.add('card-front');
+  
+              const title = document.createElement('div');
+              title.classList.add('title');
+              title.innerText = event.nom_event;
+  
+              const date = document.createElement('div');
+              date.classList.add('date');
+              const eventDate = new Date(event.date);
+              const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+              const formattedDate = eventDate.toLocaleDateString('fr-FR', options);
+              date.innerText = formattedDate;
+  
+              const address = document.createElement('div');
+              address.classList.add('adr-pt', 'mb-2', 'text-mute');
+              address.innerText = event.adresse;
+  
+              const point = document.createElement('div');
+              point.classList.add('adr-pt', 'mb-2', 'text-mute');
+              point.innerText = event.point + ' points';
+  
+              const cardVerso = document.createElement('div');
+              cardVerso.classList.add('card-back');
+  
+              const description = document.createElement('div');
+              description.classList.add('desc', 'mb-2', 'text-mute');
+              description.innerText = event.description;
+  
+              cardRecto.appendChild(title);
+              cardRecto.appendChild(date);
+              cardRecto.appendChild(address);
+              cardRecto.appendChild(point);
+              cardVerso.appendChild(description);
+  
+              card.appendChild(cardVerso);
+              card.appendChild(cardRecto)
+          eventsContainer.appendChild(card);
+          });
+      })
+      .catch(error => console.error(error));
+  
+  </script>
+
 </html>

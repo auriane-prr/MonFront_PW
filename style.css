@@ -27,10 +27,16 @@ body {
     border-right: 1px solid black;
   }
 
-  .nav-item {
+  .nav-admin {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 35px;
+  }
+
+  .nav-user {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 30px;
   }
   
   .sidebar-sticky {
@@ -76,61 +82,115 @@ body {
     font-family: 'Grafton';
     src: url('/MonFront_PW/Police/Grafton-Regular.ttf') format('truetype');
   }
-  
+
   /* ACCUEIL */
-  .card_home {
-    box-sizing: border-box;
+
+  .article-wrapper {
     width: 250px;
-    height: 350px;
-    margin-left: 35px;
-    background: rgba(217, 217, 217, 0.58);
-    border: 1px solid white;
-    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
-    backdrop-filter: blur(6px);
-    border-radius: 17px;
-    text-align: center;
+    -webkit-transition: 0.15s all ease-in-out;
+    transition: 0.15s all ease-in-out;
+    border-radius: 10px;
+    padding: 5px;
+    border: 4px solid transparent;
     cursor: pointer;
-    transition: all 0.5s;
+    background-color: white;
+    margin-left: 35px;
+    float: left;
+  }
+  
+  .article-wrapper:hover {
+    -webkit-box-shadow: 10px 10px 0 #C2C5AA, 20px 20px 0 #A4AC86;
+    box-shadow: 10px 10px 0 #C2C5AA, 20px 20px 0 #A4AC86;
+    border-color: #B6AD90;
+    -webkit-transform: translate(-20px, -20px);
+    -ms-transform: translate(-20px, -20px);
+    transform: translate(-20px, -20px);
+  }
+  
+  .article-wrapper:active {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+  
+  .rounded-lg {
+   /* class tailwind */
+    border-radius: 10px;
+  }
+  
+  .article-wrapper:hover .project-hover {
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    background-color: #a3b18a;
+  }
+  
+  .project-info {
+    padding-top: 20px;
+    padding: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-    font-weight: bolder;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .project-title {
+    font-size: 1.5em;
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Grafton';
+    text-overflow: ellipsis;
+    white-space: nowrap;
     color: black;
   }
   
-  .card_home:hover {
-    border: 1px solid black;
-    transform: scale(1.05);
+  .flex-pr {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
   }
   
-  .card_home:active {
-    transform: scale(0.95) rotateZ(1.7deg);
+  .project-hover {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 9px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
   }
-
-    /* EVENT */
-
-    #events-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-     /* DEFI */
-
-     #defis-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
   
+  .container-project {
+    width: 100%;
+    height: 170px;
+    background: gray;
+  }
+  
+  #home-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+ 
 
-/*  DEFI - EVENT */
+/*  DEFI - EVENT - TIPS*/
 .card {
   color: #1b1b1b;
   width: 570px;
   height: 450px;
   margin-left: 35px;
+  float: left;
   position: relative;
   outline: 4px solid #dad7cd;
   border-radius: 8px;
@@ -140,7 +200,6 @@ body {
   background: linear-gradient(to top, #3a5a40, #dad7cd);
   transition: background-color 1s ease-in-out;
   overflow: hidden;  
-  float: left;
   margin-bottom: 50px;
 }
 
@@ -208,46 +267,28 @@ body {
   transform: translateX(0);
 }
 
+    /* EVENT */
 
-/*  TIPS */
-.card_tips {
-  width: 220px;
-  height: 150px;
-  margin-left: 30px;
-  margin-bottom: 50px;
-  padding: 0.5rem;
-  background: rgba(198, 198, 198, 0.34);
-  border-radius: 8px;
-  backdrop-filter: blur(5px);
-  position: relative;
-  border-bottom: 3px solid rgba(255, 255, 255, 0.440);
-  border-left: 2px  rgba(255, 255, 255, 0.545) outset;
-  box-shadow: -40px 50px 30px rgba(0, 0, 0, 0.280);
-  transform: skewX(5deg);
-  transition: .4s;
-  overflow: hidden;
-  color: white;
-}
+    #events-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-.card_tips:hover {
-  height: 265px;
-  transform: skew(0deg);
-}
+     /* DEFI */
 
-.align {
-  padding: 5px;
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-  align-self: flex-start;
-}
+     #defis-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-.card_tips h1 {
-  font-size: 18;
-  text-align: center;
-  margin: 1.3rem;
-  color: #3a5a40;
-}
+    /* TIPS */
+    #tips-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
 /*  MESSAGERIE*/
 .messages-header {
@@ -472,7 +513,7 @@ select:focus {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
 
-.btn-ajout {
+.btn-mod {
   background-color: #3a5a40;
   border-color: #3a5a40;
   color: #fff;
@@ -480,7 +521,7 @@ select:focus {
   margin-right: 250px;
 }
 
-.btn-ajout:hover {
+.btn-mod:hover {
   opacity: 0.7;
 }
     

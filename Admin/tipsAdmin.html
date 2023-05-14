@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>Eco-Friendly App</title>
+    <title>TerraShift</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../style.css">
   </head>
@@ -20,13 +20,13 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item">
+            <li class="nav-admin">
               <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/Admin/eventAdmin.html">Event</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-admin">
               <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/Admin/defiAdmin.html">Defi</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-admin">
               <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/Admin/tipsAdmin.html">Tips</a>
             </li>
           </ul>
@@ -37,32 +37,39 @@
     <div class="container-fluid">
       <div class="row ">
 
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <main role="main">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h2>TIPS</h2>
+          <h2 class="text-center text-md-left mb-0">Tips</h2>
 
-          <button type="button" class="btn btn-ajout" data-toggle="modal" data-target="#myModal">Ajouter un tips</button>
+          <button type="button" class="btn btn-mod mt-3" data-toggle="modal" data-target="#ajout-tips">Ajouter un tips</button>
           
           <!-- Fenêtre modale formulaire -->
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal fade" id="ajout-tips" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                   <div class="modal-content">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <div class="modal-header">
+                        <div class="title">Ajouter un Evènement</div>
+                      </div>
                       <form class="form_admin">
-                          <div class="title">Ajouter un Tips</div>
+                        <div class="modal-body">
                           <label for="nom_tips"></label>
                           <input type="text" placeholder="Nom du tips" class="input" id="nom_tips" name="nom_tips" required>
                           <label for="description"></label>
                           <textarea id="description" name="description" required placeholder="Description"></textarea>
                           <button id="submit" type="submit" onclick="AddTip(this.form)">Ajouter</button>
-              
+                        </div>
+                          
                         </form>
                   </div>
               </div>
           </div>
+        </div>
 
-      </div>
+      <div id="tips-container"></div>
+
       </main>
+    </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
@@ -72,7 +79,7 @@
   </body>
 
   <script>
-    // Script JavaScript pour envoyer les données du formulaire au serveur via une requête POST
+    //REQUETE POST TIPS
 
       function AddTip(form){
         var nom_tips = form.nom_tips.value;
@@ -87,6 +94,53 @@
         .then(message => alert(message))
         .catch(error => console.error(error));
       };
+
+      
+  //REQUETE GET TIPS
+    const tipsContainer = document.getElementById('tips-container');
+
+fetch('http://localhost:3500/api/tips',{
+method: 'GET',
+})
+.then(response => response.json())
+.then(tips => {
+    tips.forEach(tips => {
+      const card = document.createElement('div');
+              card.classList.add('card');
+  
+              const cardRecto = document.createElement('div');
+              cardRecto.classList.add('card-front');
+  
+              const title = document.createElement('div');
+              title.classList.add('title');
+              title.innerText = tips.nom_tips;
+
+              const cardVerso = document.createElement('div');
+              cardVerso.classList.add('card-back');
+  
+              const description = document.createElement('div');
+              description.classList.add('desc', 'mb-2', 'text-mute');
+              description.innerText = tips.description;
+
+              const btn_supp = document.createElement('button');
+              btn_supp.classList.add('btn', 'btn-mod', 'mt-3');
+              btn_supp.innerText = 'Supprimer';
+
+              const btn_modif = document.createElement('button');
+              btn_modif.classList.add('btn', 'btn-mod', 'mt-3');
+              btn_modif.innerText = 'Modifier'; 
+  
+              cardRecto.appendChild(title);
+              cardVerso.appendChild(description);
+              cardVerso.appendChild(btn_supp);
+              cardVerso.appendChild(btn_modif);
+  
+              card.appendChild(cardVerso);
+              card.appendChild(cardRecto)
+          tipsContainer.appendChild(card);
+          });
+      })
+      .catch(error => console.error(error));
 
   </script>
 </html>
