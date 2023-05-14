@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>Eco-Friendly App</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="../style.css">
   </head>
-
 
   <body>
 
@@ -34,34 +34,63 @@
       </div>
     </nav>
 
-    <div class="container-fluid">
-      <div class="row">
+        <aside class="sidebar col-md-2 d-none d-md-block">
+          <h3>EVENEMENT DU JOUR</h3>
+		      <p class="sidebartext">Il n'y a pas d'évènement prévu aujourd'ui, reviens demain</p>
+		      <h3>DEFIS EN COURS</h3>
+          <a href="http://127.0.0.1:5500/MonFront_PW/Admin/defiAdmin.html">
+            <i class="fa-sharp fa-solid fa-seedling fa-bounce"></i>
+            <button class="sidebar-btn">
+              2 000 mails non-lus
+            </button>
+          </a>
+		      <a href="http://127.0.0.1:5500/MonFront_PW/Admin/defiAdmin.html">
+            <i class="fa-sharp fa-solid fa-seedling fa-bounce"></i>
+            <button class="sidebar-btn">
+              Collectionneur de déchets
+            </button>
+          </a>
+        </aside>
 
-        <main role="main">
+        <main role="main" class="content">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h2 class="text-center text-md-left mb-0">Bienvenue sur TerraShift</h2>
             <!-- <p>Ton nouveau site DDRS</p> -->
           </div>
 
-          <p>NOS DERNIERS TIPS</p>
+            <h4>NOS DERNIERS TIPS</h4>
 
-          <article class="article-wrapper">
-            <div class="rounded-lg container-project">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4">
+                <a href="http://127.0.0.1:5500/MonFront_PW/Admin/tipsAdmin.html">
+                  <div class="card-home">
+                    <div class="card-image"></div>
+                    <div class="category"> Tip </div>
+                    <div class="heading"> Economie d'énergie </div>
+                  </div>
+                </a>
               </div>
-              <div class="project-info">
-                <div class="flex-pr">
-                  <div class="project-title text-nowrap">Project</div>
-                  <a href="http://127.0.0.1:5500/MonFront_PW/Admin/tipsAdmin.html">
-                    <div class="project-hover">
-                      <svg style="color: black;" width="2em" height="2em" color="black" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </div>
-                  </a>
-                    </div>
+              <div class="col-md-4">
+                <a href="http://127.0.0.1:5500/MonFront_PW/Admin/tipsAdmin.html">
+                  <div class="card-home">
+                    <div class="card-image"></div>
+                    <div class="category"> Tip </div>
+                    <div class="heading"> Votre lessive maison </div>
+                  </div>
+                </a>
               </div>
-          </article>
-          
-          <div id="home-container"></div>
-          
+              <div class="col-md-4">
+                <a href="http://127.0.0.1:5500/MonFront_PW/Admin/tipsAdmin.html">
+                  <div class="card-home">
+                    <div class="card-image"></div>
+                    <div class="category"> Tip </div>
+                    <div class="heading"> Dans ton assiette </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
 
         </main>
 
@@ -72,41 +101,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   </body>
-
-  <script>
-      //REQUETE GET TIPS-
-      const homeContainer = document.getElementById('home-container');
-
-      fetch('http://localhost:3500/api/tips',{
-        method: 'GET',
-      })
-      .then(response => response.json())
-      .then(home => {
-        home.forEach(tips => {
-          const card = document.createElement('article');
-          card.classList.add('article-wrapper');
-
-          const round = document.createElement('div');
-          round.classList.add('rounded-lg', 'container-project');
-
-          const info = document.createElement('div');
-          info.classList.add('project-info');
-
-          const nomtips = document.createElement('div');
-          nomtips.classList.add('flex-pr');
-
-          const title = document.createElement('div');
-          title.classList.add('project-title', 'text-nowrap');
-          title.innerText = tips.nom_tips;
-
-          card.appendChild(round);
-          round.appendChild(info);
-          info.appendChild(nomtips);
-          nomtips.appendChild(title);
-        homeContainer.appendChild(card);
-        });
-      })
-      .catch(error => console.error(error));
-  </script>
   
 </html>
