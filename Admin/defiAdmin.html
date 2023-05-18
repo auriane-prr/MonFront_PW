@@ -163,6 +163,22 @@ description.innerText = defi.description;
 const btn_supp = document.createElement('button');
 btn_supp.classList.add('btn', 'btn-mod', 'mt-3');
 btn_supp.innerText = 'Supprimer';
+btn_supp.addEventListener('click', () => {
+              // REQUETE DELETE DEFI
+              fetch(`http://localhost:3500/api/defi/${defi.nom_defi}`,{
+                method: 'DELETE',
+              })
+                .then(response => {
+                  if (response.ok) {
+                    const item = document.getElementById(nom_defi);
+                    item.parentNode.removeChild(item);
+                    console.log('Défi supprimé');
+                }})
+                .catch(error => {
+                  // Si une erreur survient, affichez-la dans la console.
+                  console.error('Une erreur est survenue lors de la suppression du défi', error);
+                });
+            });
 
 const btn_modif = document.createElement('button');
 btn_modif.classList.add('btn', 'btn-mod', 'mt-3');

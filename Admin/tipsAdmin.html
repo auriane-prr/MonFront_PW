@@ -129,6 +129,29 @@ method: 'GET',
               const btn_supp = document.createElement('button');
               btn_supp.classList.add('btn', 'btn-mod', 'mt-3');
               btn_supp.innerText = 'Supprimer';
+              btn_supp.addEventListener('click', () => {
+              // REQUETE DELETE TIPS
+              fetch(`http://localhost:3500/api/tips/${tips.nom_tips}`,{
+                method: 'DELETE',
+              })
+                .then(response => {
+                  if (response.ok) {
+                    const item = document.getElementById(nom_tips);
+                    if (item) {
+                      item.parentNode.removeChild(item);
+                      console.log('Tips supprimé');
+                    }
+                    // Si la suppression réussit, supprimez l'élément de la page.
+                  } else {
+                    // Si la suppression échoue, affichez un message d'erreur.
+                    console.error(`La suppression a échoué avec le code d'état ${response.status}`);
+                  }
+                })
+                .catch(error => {
+                  // Si une erreur survient, affichez-la dans la console.
+                  console.error('Une erreur est survenue lors de la suppression du tips', error);
+                });
+            });
 
               const btn_modif = document.createElement('button');
               btn_modif.classList.add('btn', 'btn-mod', 'mt-3');
