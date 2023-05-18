@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Eco-Friendly App</title>
+    <title>TerraShift</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../style.css">
   </head>
@@ -41,21 +41,15 @@
     </nav>
 
     <aside class="sidebar col-md-2 d-none d-md-block">
-      <h3>EVENEMENT DU JOUR</h3>
-      <p class="sidebartext">Il n'y a pas d'évènement prévu aujourd'ui, reviens demain</p>
-      <h3>DEFIS EN COURS</h3>
-      <a href="http://127.0.0.1:5500/MonFront_PW/User/defi.html">
-        <i class="fa-sharp fa-solid fa-seedling fa-bounce"></i>
-        <button class="sidebar-btn">
-          2 000 mails non-lus
-        </button>
+      <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/event.html">
+        <h3>EVENEMENT DU JOUR</h3>
+        <p class="sidebartext">CleanWalk - Montpellier</p>
       </a>
-      <a href="http://127.0.0.1:5500/MonFront_PW/User/defi.html">
-        <i class="fa-sharp fa-solid fa-seedling fa-bounce"></i>
-        <button class="sidebar-btn">
-          Collectionneur de déchets
-        </button>
-      </a>
+      <a  class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/defi.html">
+        <h3>DEFIS EN COURS</h3>
+        <p class="sidebartext">2 000 mails non-lus</p>
+        <p class="sidebartext">Collectionneur de déchets</p>
+      </a>  
     </aside>
 
     <main role="main" class="content">
@@ -65,15 +59,16 @@
       </div>
 
         <h4>NOS DERNIERS TIPS</h4>
-        <i class="fa-sharp fa-solid fa-seedling fa-bounce"></i>
 
       <div class="container">
         <div class="row">
           <div class="col-md-4">
             <a href="http://127.0.0.1:5500/MonFront_PW/User/tips.html">
               <div class="card-home">
-                <div class="card-image"></div>
-                <div class="category"> Tip </div>
+                <div class="card-image">
+                  <img src="/MonFront_PW/ampouleTips.JPG" style="width: 238px; height: 250px;">
+                </div>
+                <div class="category"> Conseil </div>
                 <div class="heading"> Economie d'énergie </div>
               </div>
             </a>
@@ -81,8 +76,10 @@
           <div class="col-md-4">
             <a href="http://127.0.0.1:5500/MonFront_PW/User/tips.html">
               <div class="card-home">
-                <div class="card-image"></div>
-                <div class="category"> Tip </div>
+                <div class="card-image">
+                  <img src="/MonFront_PW/lessiveTips.JPG" style="width: 238px; height: 250px;";>
+                </div>
+                <div class="category"> Conseil </div>
                 <div class="heading"> Votre lessive maison </div>
               </div>
             </a>
@@ -90,8 +87,10 @@
           <div class="col-md-4">
             <a href="http://127.0.0.1:5500/MonFront_PW/User/tips.html">
               <div class="card-home">
-                <div class="card-image"></div>
-                <div class="category"> Tip </div>
+                <div class="card-image">
+                  <img src="/MonFront_PW/assietteTips.JPG" style="width: 238px; height: 250px;">
+                </div>
+                <div class="category"> Conseil </div>
                 <div class="heading"> Dans ton assiette </div>
               </div>
             </a>

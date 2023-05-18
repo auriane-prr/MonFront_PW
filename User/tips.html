@@ -29,7 +29,7 @@
                 <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/defi.html">Defi</a>
               </li>
               <li class="nav-user">
-                <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/tips.html">Tips</a>
+                <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/tips.html" style="color: #344e41;">Tips</a>
               </li>
               <li class="nav-user">
                 <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/User/chat.html">Messagerie</a>
@@ -80,6 +80,7 @@ method: 'GET',
               const title = document.createElement('div');
               title.classList.add('title');
               title.innerText = tips.nom_tips;
+              title.style.paddingTop = '60px';
 
               const cardVerso = document.createElement('div');
               cardVerso.classList.add('card-back');
@@ -87,10 +88,21 @@ method: 'GET',
               const description = document.createElement('div');
               description.classList.add('desc', 'mb-2', 'text-mute');
               description.innerText = tips.description;
+
+              const cardImage = document.createElement('div');
+              cardImage.classList.add('card-image');
+              const image = document.createElement('img');
+              image.src = `../${tips.image}`;
+              image.style.width = '230px';
+              image.style.height = '280px';
+              image.style.display = 'block';
+              image.style.marginLeft = '180px';
+              cardImage.appendChild(image);
   
+              cardRecto.appendChild(cardImage);
               cardRecto.appendChild(title);
               cardVerso.appendChild(description);
-  
+                
               card.appendChild(cardVerso);
               card.appendChild(cardRecto)
           tipsContainer.appendChild(card);

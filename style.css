@@ -25,7 +25,8 @@
   .nav-user {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 25px;
+    padding-right: 20px;
   }
   
 /* SIDEBAR */
@@ -65,47 +66,18 @@
     font-family: 'Toma';
     font-size: 25px;
   }
-
-  .sidebar-btn {
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-    border: none;
-    background: none;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    font-family: Geneva, sans-serif;
-  }
-  
-  .sidebar-btn::before {
-    margin: 0 auto;
-  }
-  
-  .sidebar-btn::after, button::before {
-    content: '';
-    width: 0%;
-    height: 2px;
-    background: #333D29;
-    display: block;
-    transition: 0.5s;
-  }
-  
-  .sidebar-btn:hover::after, button:hover::before {
-    width: 100%;
-  }
-
   
   .sidebartext{
     font-size: 20px;
-    text-align: justify;
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
     color: white;
-    padding-bottom: 50px;
+    padding-bottom: 30px;
     font-family: Geneva, sans-serif;
   }
   
   /*  CONTENU PAGE */
+
   .main {
     margin-left: 220px;
   }
@@ -152,16 +124,11 @@
     src: url('/MonFront_PW/Police/Toma-Regular.ttf') format('truetype');
   }
 
-  /* ICON */
-  .fa-sharp.fa-solid.fa-seedling {
-    color:#1b1b1b;
-  }
-
   /* ACCUEIL */
 
   .card-home {
     width: 250px;
-    height: 320px;
+    height: 350px;
     background: white;
     padding: .4em;
     border-radius: 6px;
@@ -171,9 +138,8 @@
   }
   
   .card-image {
-    background-color: #A68A64;
-    width: 100%;
-    height: 70%;
+    width: 180px;
+    height: 250px;
     border-radius: 6px 6px 0 0;
   }
   
@@ -188,6 +154,7 @@
     font-family: 'Toma';
     color: #344e41;
     padding: 10px 7px 0;
+    padding-top: 20px;
   }
   
   .category:hover {
@@ -395,63 +362,37 @@
 
 
 /*  PROFIL */
-.form-group {
-  margin-bottom: 20px;
+.form-profil{
+  justify-content: center;
+  align-items: center
 }
 
-.btn-primary {
-  background-color: #3897f0;
-  border-color: #3897f0;
+
+.form-profil label {
+  padding-left: 100px;
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-  background-color: #2488d8;
-  border-color: #2488d8;
-}
-
-.btn-block {
-  display: block;
-  width: 100%;
-}
-
-label {
-  color: #555;
-  font-size: 16px;
-  font-weight: normal;
-}
-
-input[type="email"], input[type="password"], input[type="text"], input[type="number"] {
-  background-color: #FAFAFA;
-  border: none;
-  border-radius: 3px;
-  color: #555;
-  font-size: 16px;
-  height: 50px;
-  padding: 10px;
-  width: 100%;
-}
-
-input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus, input[type="number"]:focus {
-  background-color: #F2F2F2;
-  outline: none;
-}
-
-input[type="submit"] {
-  background-color: #3897f0;
-  border: none;
-  border-radius: 3px;
+.btn-profil {
+  background-color: #3a5a40;
+  border-color: #3a5a40;
   color: #fff;
-  cursor: pointer;
-  font-size: 16px;
-  height: 50px;
-  margin-top: 20px;
+  font-family: 'Toma';
+}
+
+.profilpage{
   width: 100%;
 }
 
-input[type="submit"]:hover, input[type="submit"]:focus, input[type="submit"]:active {
-  background-color: #2488d8;
+.btn_deco {
+background: #3a5a40;
+border-radius: 7px;
+outline: none;
+color: #ffffff;
+cursor: pointer;
+font-family: 'Toma';
+font-size: 20px;
+padding: 5px 100px 5px 100px;
 }
-
 
 /* ADMIN */
 
@@ -586,4 +527,76 @@ select:focus {
   font-weight: 600;
 }
 
-/* USER  */
+/* AUTHENTIFICATION */
+
+a{
+  color: black;
+}
+
+a:hover {
+  color: #3a5a40;
+}
+
+label{
+  color: #3a5a40;
+  padding-top: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'Toma';
+  color: #344e41;
+}
+
+.log-in_btn {
+width: 100%;
+height: 40px;
+border: 0;
+background: #3a5a40;
+border-radius: 7px;
+outline: none;
+color: #ffffff;
+cursor: pointer;
+margin-bottom: 30px;
+margin-top: 30px;
+font-family: 'Toma';
+font-size: 20px;
+}
+
+.form-connexion {
+width: 100%;
+height: fit-content;
+position: relative;
+display: flex;
+flex-direction: column;
+gap: 5px;
+}
+
+.title_container {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 10px;
+}
+
+.form_connexion {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 50px 40px 20px 40px;
+  background-color: #ffffff;
+  border-radius: 11px;
+  font-family: "Inter", sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 10px double #B6AD90;
+}
+
+p {
+  font-family: Geneva, sans-serif;
+}

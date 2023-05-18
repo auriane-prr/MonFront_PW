@@ -27,7 +27,7 @@
               <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/Admin/defiAdmin.html">Defi</a>
             </li>
             <li class="nav-admin">
-              <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/Admin/tipsAdmin.html">Tips</a>
+              <a class="nav-link" href="http://127.0.0.1:5500/MonFront_PW/Admin/tipsAdmin.html" style="color: #344e41;">Tips</a>
             </li>
           </ul>
         </div>
@@ -55,6 +55,8 @@
                         <div class="modal-body">
                           <label for="nom_tips"></label>
                           <input type="text" placeholder="Nom du tips" class="input" id="nom_tips" name="nom_tips" required>
+                          <label for="image"></label>
+                          <input type="text" placeholder="Lien de l'image" class="input" id="image" name="image" required>
                           <label for="description"></label>
                           <textarea id="description" name="description" required placeholder="Description"></textarea>
                           <button id="submit" type="submit" onclick="AddTip(this.form)">Ajouter</button>
@@ -84,11 +86,12 @@
       function AddTip(form){
         var nom_tips = form.nom_tips.value;
         var description = form.description.value;
+        var image = form.image.value;
   
         fetch('http://localhost:3500/api/tips', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({"nom_tips": nom_tips, "description": description })
+          body: JSON.stringify({"nom_tips": nom_tips, "description": description, "image": image })
         })
         .then(response => response.text())
         .then(message => alert(message))
@@ -114,6 +117,7 @@ method: 'GET',
               const title = document.createElement('div');
               title.classList.add('title');
               title.innerText = tips.nom_tips;
+              title.style.paddingTop = '60px';
 
               const cardVerso = document.createElement('div');
               cardVerso.classList.add('card-back');
@@ -129,6 +133,18 @@ method: 'GET',
               const btn_modif = document.createElement('button');
               btn_modif.classList.add('btn', 'btn-mod', 'mt-3');
               btn_modif.innerText = 'Modifier'; 
+
+              const cardImage = document.createElement('div');
+              cardImage.classList.add('card-image');
+              const image = document.createElement('img');
+              image.src = `../${tips.image}`;
+              image.style.width = '230px';
+              image.style.height = '280px';
+              image.style.display = 'block';
+              image.style.marginLeft = '180px';
+              cardImage.appendChild(image);
+  
+              cardRecto.appendChild(cardImage);
   
               cardRecto.appendChild(title);
               cardVerso.appendChild(description);
