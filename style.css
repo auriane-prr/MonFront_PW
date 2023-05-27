@@ -257,6 +257,19 @@
   transform: translateX(0);
 }
 
+.btn-insc{
+  background-color: #414833;
+  border-color: #414833;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  margin-right: 250px;
+  opacity: 0.6;
+}
+
+.btn-insc.clicked {
+  opacity: 1;
+}
+
     /* EVENT */
 
     #events-container {

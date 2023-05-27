@@ -88,7 +88,7 @@
         var description = form.description.value;
         var image = form.image.value;
   
-        fetch('http://localhost:3500/api/tips', {
+        fetch('https://terrashift-backend.onrender.com/api/tips', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({"nom_tips": nom_tips, "description": description, "image": image })
@@ -102,7 +102,7 @@
   //REQUETE GET TIPS
     const tipsContainer = document.getElementById('tips-container');
 
-fetch('http://localhost:3500/api/tips',{
+fetch('https://terrashift-backend.onrender.com/api/tips',{
 method: 'GET',
 })
 .then(response => response.json())
@@ -131,7 +131,7 @@ method: 'GET',
               btn_supp.innerText = 'Supprimer';
               btn_supp.addEventListener('click', () => {
               // REQUETE DELETE TIPS
-              fetch(`http://localhost:3500/api/tips/${tips.nom_tips}`,{
+              fetch(`https://terrashift-backend.onrender.com/api/tips/${tips.nom_tips}`,{
                 method: 'DELETE',
               })
                 .then(response => {

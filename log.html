@@ -142,6 +142,7 @@
         .then(data => {
           // Gérer la réponse JSON après la connexion réussie
           const token = data.token;
+          localStorage.setItem('token', token);
           // Stocker le token dans le local storage ou dans un cookie si nécessaire
   
           // Rediriger vers la page suivante ou effectuer d'autres actions nécessaires après la connexion réussie

@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>TerraShift</title>
+    <!-- <title>TerraShift</title> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../style.css">
   </head>
@@ -106,7 +106,7 @@
         var description = form.description.value;
         var point = form.point.value;
   
-        fetch('http://localhost:3500/api/defi', {
+        fetch('https://terrashift-backend.onrender.com/api/defi', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({"nom_defi": nom_defi, "date_deb": date_deb, "date_fin": date_fin, "description": description, "point": point })
@@ -119,7 +119,7 @@
       // REQUETE GET
       const defisContainer = document.getElementById('defis-container');
 
-fetch('http://localhost:3500/api/defi',{
+fetch('https://terrashift-backend.onrender.com/api/defi',{
   method: 'GET',
 })
 .then(response => response.json())
@@ -165,7 +165,7 @@ btn_supp.classList.add('btn', 'btn-mod', 'mt-3');
 btn_supp.innerText = 'Supprimer';
 btn_supp.addEventListener('click', () => {
               // REQUETE DELETE DEFI
-              fetch(`http://localhost:3500/api/defi/${defi.nom_defi}`,{
+              fetch(`https://terrashift-backend.onrender.com/api/defi/${defi.nom_defi}`,{
                 method: 'DELETE',
               })
                 .then(response => {

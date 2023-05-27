@@ -123,8 +123,21 @@ description.classList.add('desc', 'mb-2', 'text-mute');
 description.innerText = defi.description;
 
 const btn_insc = document.createElement('button');
-btn_insc.classList.add('btn', 'btn-mod', 'mt-3');
-btn_insc.innerText = 'Je participe';
+let isClicked = false;
+let label = 'Je veux participer'
+btn_insc.innerText = label;
+btn_insc.addEventListener('click', function() {
+  if (isClicked) {
+    btn_insc.classList.remove('clicked');
+    isClicked = false;
+    btn_insc.innerText = label;
+  } else {
+    btn_insc.classList.add('clicked');
+    isClicked = true;
+    btn_insc.innerText = 'Je participe';
+  }
+});
+btn_insc.classList.add('btn','btn-insc', 'mt-3');
 
 cardRecto.appendChild(title);
 cardRecto.appendChild(date_deb);

@@ -110,7 +110,7 @@ function AddEvent(form){
     var description = form.description.value;
     var point = form.point.value;
 
-    fetch('http://localhost:3500/api/event', {
+    fetch('https://terrashift-backend.onrender.com/api/event', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({"nom_event": nom_event, "adresse": adresse, "date": date, "description": description, "point": point }),
@@ -123,7 +123,7 @@ function AddEvent(form){
   //REQUETE GET EVENT
     const eventsContainer = document.getElementById('events-container');
 
-    fetch('http://localhost:3500/api/event',{
+    fetch('https://terrashift-backend.onrender.com/api/event',{
     method: 'GET',
     })
     .then(response => response.json())
@@ -166,7 +166,7 @@ function AddEvent(form){
             btn_supp.innerText = 'Supprimer';
             btn_supp.addEventListener('click', () => {
               // REQUETE DELETE EVENT
-              fetch(`http://localhost:3500/api/event/${event.nom_event}`,{
+              fetch(`https://terrashift-backend.onrender.com/api/event/${event.nom_event}`,{
                 method: 'DELETE',
               })
                 .then(response => {

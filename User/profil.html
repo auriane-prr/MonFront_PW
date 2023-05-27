@@ -81,165 +81,60 @@
         </div>
         </form>
 
-        <!-- <div id="profil-container"></div> -->
     </main>
     </div>
 </div>
 
-<!-- <script>
-
-const profilContainer = document.getElementById('profil-container');
-
-fetch(`http://localhost:3500/api/users/${user.email}`,{
-method: 'GET',
-})
-.then(response => response.json())
-.then(user => {
-    user.forEach(user => {
-      const form = document.createElement('form');
-      form.classList.add('form-profil');
-
-      // Adresse email
-      const emailFormGroup = document.createElement('div');
-      emailFormGroup.classList.add('form-group', 'row');
-
-      const emailLabel = document.createElement('label');
-      emailLabel.setAttribute('for', 'email');
-      emailLabel.classList.add('col-sm-3', 'col-form-label');
-      emailLabel.textContent = 'Adresse email:';
-
-      const emailInput = document.createElement('input');
-      emailInput.setAttribute('type', 'email');
-      emailInput.classList.add('form-control');
-      emailInput.setAttribute('id', 'email');
-      emailInput.innerText = user.email;
-      emailInput.disabled = true;
-
-      emailFormGroup.appendChild(emailLabel);
-      emailFormGroup.appendChild(emailInput);
-      form.appendChild(emailFormGroup);
-
-      // Mot de passe
-      const passwordFormGroup = document.createElement('div');
-      passwordFormGroup.classList.add('form-group', 'row');
-
-      const passwordLabel = document.createElement('label');
-      passwordLabel.setAttribute('for', 'password');
-      passwordLabel.classList.add('col-sm-3', 'col-form-label');
-      passwordLabel.textContent = 'Mot de passe:';
-
-      const passwordInput = document.createElement('input');
-      passwordInput.setAttribute('type', 'password');
-      passwordInput.classList.add('form-control');
-      passwordInput.setAttribute('id', 'password');
-      passwordInput.innerText = user.password;
-      passwordInput.disabled = true;
-
-      passwordFormGroup.appendChild(passwordLabel);
-      passwordFormGroup.appendChild(passwordInput);
-      form.appendChild(passwordFormGroup);
-
-      // Pseudo
-      const pseudoFormGroup = document.createElement('div');
-      pseudoFormGroup.classList.add('form-group', 'row');
-
-      const pseudoLabel = document.createElement('label');
-      pseudoLabel.setAttribute('for', 'pseudo');
-      pseudoLabel.classList.add('col-sm-3', 'col-form-label');
-      pseudoLabel.textContent = 'Pseudo:';
-
-      const pseudoInput = document.createElement('input');
-      pseudoInput.setAttribute('type', 'text');
-      pseudoInput.classList.add('form-control');
-      pseudoInput.setAttribute('id', 'pseudo');
-      pseudoInput.innerText = user.pseudo;
-      pseudoInput.disabled = true;
-
-      const pseudoButtonWrapper = document.createElement('div');
-      pseudoButtonWrapper.classList.add('col-sm-3');
-
-      const pseudoButton = document.createElement('button');
-      pseudoButton.setAttribute('type', 'button');
-      pseudoButton.classList.add('btn', 'btn-profil');
-      pseudoButton.textContent = 'Modifier';
-
-      pseudoButtonWrapper.appendChild(pseudoButton);
-
-      pseudoFormGroup.appendChild(pseudoLabel);
-      pseudoFormGroup.appendChild(pseudoInput);
-      pseudoFormGroup.appendChild(pseudoButtonWrapper);
-
-      form.appendChild(pseudoFormGroup);
-
-      // Ville
-      const localisationFormGroup = document.createElement('div');
-      localisationFormGroup.classList.add('form-group', 'row');
-
-      const localisationLabel = document.createElement('label');
-      localisationLabel.setAttribute('for', 'localisation');
-      localisationLabel.classList.add('col-sm-3', 'col-form-label');
-      localisationLabel.textContent = 'Ville:';
-
-      const localisationInput = document.createElement('input');
-      localisationInput.setAttribute('type', 'text');
-      localisationInput.classList.add('form-control');
-      localisationInput.setAttribute('id', 'localisation');
-      localisationInput.innerText = user.localisation;
-      localisationInput.disabled = true;
-
-      const localisationButtonWrapper = document.createElement('div');
-      localisationButtonWrapper.classList.add('col-sm-3');
-
-      const localisationButton = document.createElement('button');
-      localisationButton.setAttribute('type', 'button');
-      localisationButton.classList.add('btn', 'btn-profil');
-      localisationButton.textContent = 'Modifier';
-
-      localisationButtonWrapper.appendChild(localisationButton);
-
-      localisationFormGroup.appendChild(localisationLabel);
-      localisationFormGroup.appendChild(localisationInput);
-      localisationFormGroup.appendChild(localisationButtonWrapper);
-      form.appendChild(localisationFormGroup);
-
-      // Déconnexion
-      const logoutLink = document.createElement('a');
-      logoutLink.setAttribute('href', '/MonFront_PW/log.html');
-      logoutLink.classList.add('btn_deco');
-      logoutLink.textContent = 'Déconnexion';
-
-      const textCenterDiv = document.createElement('div');
-      textCenterDiv.classList.add('text-center');
-      textCenterDiv.appendChild(logoutLink);
-      form.appendChild(textCenterDiv);
-
-      profilContainer.appendChild(form);
-    });
-  })
-  .catch(error => console.error(error));
-
-
-  // // Fonction pour récupérer les informations de l'utilisateur et les afficher sur la page de profil
-  // function loadUserProfile() {
-  //   fetch(`http://localhost:3500/api/users/${user.email}`,{
-  //     method: 'GET',
-  //   }) 
-  //     .then(response => response.json())
-  //     .then(user => {
-  //   document.getElementById('email').value = user.email;
-  //   document.getElementById('password').value = user.password;
-  //   document.getElementById('pseudo').value = user.pseudo;
-  //   document.getElementById('localisation').value = user.localisation;
-  // })
-  // .catch(error => {
-  //   console.error('Erreur lors de la récupération des données utilisateur', error);
-  // });
-  // }
-
-  // // Appeler la fonction de chargement des informations de l'utilisateur au chargement de la page
-  // document.addEventListener('DOMContentLoaded', loadUserProfile);
-</script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/j+wt-decode/3.1.2/jwt-decode.min.js"></script> -->
 
 
 </body>
+
+<script>
+function decodeJWTToken(token) {
+  const base64Url = token.split('.')[1];
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+
+  return JSON.parse(jsonPayload);
+}
+
+async function getUserProfile() {
+  try {
+    const token = localStorage.getItem('token');
+    console.log('token : ', token);
+    const decodedToken = decodeJWTToken(token);
+    console.log('Email de l\'utilisateur connecté : ', decodedToken.email);
+    const userEmail = decodedToken.email;
+    console.log('userEmail : ', userEmail);
+
+    const response = await fetch(`http://localhost:3500/api/users/${userEmail}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+      if (!response.ok) {
+        throw new Error('Une erreur s\'est produite lors de la récupération du profil utilisateur');
+      }
+
+      const data = await response.json();
+      const user = data.user;
+
+      // Afficher les informations de l'utilisateur dans les champs correspondants
+      document.getElementById('email').value = user.email;
+      document.getElementById('password').value = '********'; // Vous ne pouvez pas afficher le mot de passe
+      document.getElementById('pseudo').value = user.pseudo;
+      document.getElementById('localisation').value = user.localisation;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // Appeler la fonction pour récupérer et afficher le profil de l'utilisateur
+  getUserProfile();
+</script>
 </html>
