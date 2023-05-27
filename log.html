@@ -93,7 +93,7 @@
       const pseudo = document.getElementById('pseudo').value;
       const localisation = document.getElementById('localisation').value;
   
-      fetch('http://localhost:3500/api/users/signup', {
+      fetch('https://terrashift-backend.onrender.com/api/users/signup', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({email: email, password: password, pseudo: pseudo, localisation: localisation })
@@ -126,7 +126,7 @@
       const email = document.getElementById('loginEmail').value;
       const password = document.getElementById('loginPassword').value;
   
-      fetch('http://localhost:3500/api/users/login', {
+      fetch('https://terrashift-backend.onrender.com/api/users/login', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({email: email, password: password})
@@ -149,10 +149,10 @@
           // Vérifier les informations de connexion et rediriger en conséquence
           if (email === 'admin@mail.com') {
             // Rediriger vers la page admin.html pour l'administrateur
-            window.location.href = 'http://127.0.0.1:5500/MonFront_PW/Admin/homeAdmin.html';
+            window.location.href = 'https://terrashift-backend.onrender.com/Admin/homeAdmin.html';
           } else {
             // Afficher un message d'erreur si les informations de connexion sont incorrectes
-            window.location.href = 'http://127.0.0.1:5500/MonFront_PW/User/home.html';
+            window.location.href = 'https://terrashift-backend.onrender.com/User/home.html';
           }
         })
         .catch(error => {
