@@ -3,6 +3,11 @@
     background-color: #B6AD90;
   }
   
+.log-background {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
   /* NAV BARRE */
 
   .navbar {

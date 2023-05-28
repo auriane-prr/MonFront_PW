@@ -62,9 +62,20 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
   <script>
-    document.querySelector('body').style.backgroundImage = 'url("Images/fond-log.jpg")';
-    document.querySelector('body').style.backgroundRepeat = 'no-repeat';
-    document.querySelector('body').style.backgroundSize = 'cover';
+
+    fetch(`https://terrashift-backend.onrender.com/api/image`,{
+      method: 'GET',
+    })
+    .then(response => response.json())
+    .then(tips => {
+      const fond = document.createElement('div');
+      fond.classList.add('log-background');
+      const image = fond-log.jpg
+      fond.src = `/${image}`;
+      image.appendChild(fond);
+     })
+    .catch(error => console.error(error));
+
        
     // Fonction pour basculer vers le formulaire d'inscription
     function switchToSignup() {
