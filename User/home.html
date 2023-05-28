@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>TerraShift</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../style.css">
   </head>
@@ -18,8 +18,9 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul class="navbar-nav">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="navbar-overlay"></div>
+          <ul class="navbar-nav ml-auto">
             <li class="nav-user">
               <a class="nav-link" href="https://terrashift-services.onrender.com/User/profil">Profil</a>
             </li>
@@ -36,8 +37,10 @@
         </div>
       </div>
     </nav>
+    
 
-    <aside class="sidebar col-md-2 d-none d-md-block">
+    
+    <aside class="sidebar col-md-3 d-none d-md-block">
       <a class="nav-link" href="https://terrashift-services.onrender.com/User/event">
         <h3>EVENEMENT DU JOUR</h3>
         <p class="sidebartext">CleanWalk - Montpellier</p>
