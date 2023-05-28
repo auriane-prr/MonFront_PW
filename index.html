@@ -7,6 +7,14 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
 
+  <style>
+    body{
+      background-image: url("/Images/fond-log.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+</style>
+
 </head>
 <body>
   <div class="form_connexion">
@@ -62,21 +70,6 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
   <script>
-
-    fetch(`https://terrashift-backend.onrender.com/api/image`,{
-      method: 'GET',
-    })
-    .then(response => response.json())
-    .then(tips => {
-      const fond = document.createElement('div');
-      fond.classList.add('log-background');
-      const nom_image = fond-log.jpg
-      fond.src = `/Images/${nom_image}`;
-      image.appendChild(fond);
-     })
-    .catch(error => console.error(error));
-
-       
     // Fonction pour basculer vers le formulaire d'inscription
     function switchToSignup() {
       document.getElementById('signupForm').style.display = 'block';
