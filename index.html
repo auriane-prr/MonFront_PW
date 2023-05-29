@@ -136,12 +136,11 @@
           }
         })
         .then(data => {
-          const data = response.json();
           const token = data.token;
           const userEmail = data.email;
           localStorage.setItem('token', token);
           localStorage.setItem('userEmail', userEmail);
-          
+
           // Rediriger vers la page suivante ou effectuer d'autres actions nécessaires après la connexion réussie
           // Vérifier les informations de connexion et rediriger en conséquence
           if (email === 'admin@mail.com') {
