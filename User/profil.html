@@ -108,6 +108,7 @@ async function getUserProfile() {
     const token = localStorage.getItem('token');
     console.log('token : ', token);
     const decodedToken = decodeJWTToken(token);
+    console.log('Decoded Token:', decodedToken);
     console.log('Email de l\'utilisateur connecté : ', decodedToken.email);
     const userEmail = decodedToken.email;
 
