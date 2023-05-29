@@ -99,7 +99,6 @@
             return response.json();
           } else {
             throw new Error('Une erreur est survenue lors de l\'inscription. Veuillez réessayer.');
-            document.querySelector('.error-message').textContent = 'Une erreur est survenue lors de l\'inscription. Veuillez réessayer.';
           }
         })
         .then(data => {
