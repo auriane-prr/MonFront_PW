@@ -26,7 +26,6 @@
   /* Styles pour le menu de navigation mobile */
 @media (max-width: 991px) {
   .navbar-collapse {
-    position: fixed; /* Position fixe pour empêcher le défilement de la page */
     top: 0;
     left: -100%;
     width: 100%;
@@ -55,9 +54,6 @@
     z-index: 9999; /* Assurez-vous que le bouton de basculement est en avant-plan */
   }
 
-  body {
-    overflow: hidden; /* Empêcher le défilement de la page lorsque le menu est ouvert */
-  }
 
   .navbar-collapse.show + .content {
     transform: translateY(100%); /* Décale le contenu vers le bas pour ne pas être caché */
