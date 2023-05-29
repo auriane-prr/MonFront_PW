@@ -86,7 +86,7 @@
     overflow-y: auto;
   }
 
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     .sidebar {
       width: 100%;
       order: 2;
@@ -97,7 +97,7 @@
     .content {
       order: 1;
     }
-  }
+  } */
   
   h3 {
     color: white;
@@ -131,7 +131,6 @@
   @media (max-width: 767.98px) {
   .main {
     margin-left: 0;
-     /* Ajoutez cette ligne pour occuper toute la largeur */
   }
 }
 
