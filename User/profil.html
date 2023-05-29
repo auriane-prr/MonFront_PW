@@ -93,32 +93,43 @@
 
 <script>
 // Fonction pour décoder le token
-function decodeJWTToken(token) {
-  const base64Url = token.split('.')[1];
-  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-  const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-  }).join(''));
+// function decodeJWTToken(token) {
+//   const base64Url = token.split('.')[1];
+//   const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+//   const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+//     return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+//   }).join(''));
 
-  return JSON.parse(jsonPayload);
-}
+//   return JSON.parse(jsonPayload);
+// }
 
 async function getUserProfile() {
   try {
-    const token = localStorage.getItem('token');
-    console.log('token : ', token);
-    const decodedToken = decodeJWTToken(token);
-    console.log('Decoded Token:', decodedToken);
-    console.log('Email de l\'utilisateur connecté : ', decodedToken.email);
-    const userEmail = decodedToken.email;
+    // const token = localStorage.getItem('token');
+    // console.log('token : ', token);
+    // const decodedToken = decodeJWTToken(token);
+    // console.log('Decoded Token:', decodedToken);
+    // console.log('Email de l\'utilisateur connecté : ', decodedToken.email);
+    // const userEmail = decodedToken.email;
 
-    const response = await fetch(`https://terrashift-backend.onrender.com/api/users/${userEmail}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-    });
+    // const response = await fetch(`https://terrashift-backend.onrender.com/api/users/${userEmail}`, {
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Authorization': `Bearer ${token}`
+    //   }
+    // });
 
+    // Récupérer l'email de l'utilisateur à partir du localStorage
+const userEmail = localStorage.getItem('userEmail');
+const token = localStorage.getItem('token');
+
+// Effectuer une requête GET vers l'endpoint approprié pour récupérer les éléments de la table "user"
+fetch(`https://terrashift-backend.onrender.com/api/users/${userEmail}`, {
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  }
+})
       if (!response.ok) {
         throw new Error('Une erreur s\'est produite lors de la récupération du profil utilisateur');
       }
