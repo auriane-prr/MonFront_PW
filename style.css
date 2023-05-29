@@ -361,6 +361,11 @@
 
 .profilpage{
   width: 100%;
+  position: absolute;
+  top: 100px;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
 }
 
 .btn_deco {
