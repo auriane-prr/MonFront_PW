@@ -26,11 +26,13 @@
   /* Styles pour le menu de navigation mobile */
 @media (max-width: 991px) {
   .navbar-collapse {
+    position: fixed;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background-color: rgba(194, 197, 170, 0.8); /* Couleur de fond semi-transparente */
+    margin-top: 25%;
+    background-color: rgba(182, 173, 144, 0.9); /* Couleur de fond semi-transparente */
     z-index: 9999; /* Assurez-vous que la navbar-overlay est en avant-plan */
     overflow-y: auto; /* Activer le défilement si le contenu dépasse la hauteur de l'écran */
     transition: left 0.3s ease; /* Animation de transition pour l'affichage et la disparition */
@@ -47,13 +49,12 @@
   .navbar-collapse .navbar-nav {
     flex-direction: column; /* Affichage des liens de navigation en colonne en mode mobile */
     align-items: center; /* Centrer les liens de navigation verticalement */
-    margin-top: 100px; /* Marge supérieure des liens de navigation */
+    margin-top: 30px; /* Marge supérieure des liens de navigation */
   }
 
   .navbar-toggler {
     z-index: 9999; /* Assurez-vous que le bouton de basculement est en avant-plan */
   }
-
 
   .navbar-collapse.show + .content {
     transform: translateY(100%); /* Décale le contenu vers le bas pour ne pas être caché */
@@ -130,22 +131,22 @@
   @media (max-width: 767.98px) {
   .main {
     margin-left: 0;
-    width: 100%; /* Ajoutez cette ligne pour occuper toute la largeur */
+     /* Ajoutez cette ligne pour occuper toute la largeur */
   }
 }
 
   .content {
     position: absolute;
     top: 100px;
-    left: 250px;
     right: 0;
     bottom: 0;
     background-color: #B6AD90;
     z-index: 0;
+    width: 100%;
     }
 
   h2 /*TITRE PAGE*/{
-    font-size: 50px;
+    font-size: 45px;
     letter-spacing: 10px;
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
