@@ -141,9 +141,8 @@
           localStorage.setItem('userEmail', userEmail);
           console.log('token', token);
           console.log('userEmail', userEmail);
-
-          setTimeout(function(){
-// Rediriger vers la page suivante ou effectuer d'autres actions nécessaires après la connexion réussie
+          
+          // Rediriger vers la page suivante ou effectuer d'autres actions nécessaires après la connexion réussie
           // Vérifier les informations de connexion et rediriger en conséquence
           if (email === 'admin@mail.com') {
             // Rediriger vers la page admin.html pour l'administrateur
@@ -153,7 +152,6 @@
             // Afficher un message d'erreur si les informations de connexion sont incorrectes
             window.location.href = 'https://terrashift-services.onrender.com/User/home';
           }
-          }, 10000);
           
         })
         .catch(error => {
