@@ -139,16 +139,22 @@
           const userEmail = data.email;
           localStorage.setItem('token', token);
           localStorage.setItem('userEmail', userEmail);
+          console.log('token', token);
+          console.log('userEmail', userEmail);
 
-          // Rediriger vers la page suivante ou effectuer d'autres actions nécessaires après la connexion réussie
+          setTimeout(function(){
+// Rediriger vers la page suivante ou effectuer d'autres actions nécessaires après la connexion réussie
           // Vérifier les informations de connexion et rediriger en conséquence
           if (email === 'admin@mail.com') {
             // Rediriger vers la page admin.html pour l'administrateur
+
             window.location.href = 'https://terrashift-services.onrender.com/Admin/homeAdmin';
           } else {
             // Afficher un message d'erreur si les informations de connexion sont incorrectes
             window.location.href = 'https://terrashift-services.onrender.com/User/home';
           }
+          }, 10000);
+          
         })
         .catch(error => {
           console.error(error);
