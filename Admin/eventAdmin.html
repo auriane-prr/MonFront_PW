@@ -70,7 +70,7 @@
                             <label for="description"></label>
                             <textarea id="description" name="description" required placeholder="Description"></textarea>
                 
-                            <label for="point"></label>
+                            <!-- <label for="point"></label>
                             <select id="point" name="point" class="form-control">
                               <option>10</option>
                               <option>20</option>
@@ -82,7 +82,7 @@
                               <option>80</option>
                               <option>90</option>
                               <option>100</option>
-                            </select>
+                            </select> -->
                               <button id="submit" type="submit" onclick="AddEvent(this.form)">Ajouter</button>
                             </div>
                           </form>
@@ -154,9 +154,9 @@ function AddEvent(form){
             address.classList.add('adr-pt', 'mb-2', 'text-mute');
             address.innerText = event.adresse;
 
-            const point = document.createElement('div');
-            point.classList.add('adr-pt', 'mb-2', 'text-mute');
-            point.innerText = event.point + ' points';
+            // const point = document.createElement('div');
+            // point.classList.add('adr-pt', 'mb-2', 'text-mute');
+            // point.innerText = event.point + ' points';
 
             const cardVerso = document.createElement('div');
             cardVerso.classList.add('card-back');
