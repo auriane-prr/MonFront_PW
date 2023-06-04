@@ -159,7 +159,102 @@ method: 'GET',
 
               const btn_modif = document.createElement('button');
               btn_modif.classList.add('btn', 'btn-mod', 'mt-3');
+              btn_modif.setAttribute('data-toggle', 'modal');
+              btn_modif.setAttribute('data-target', '#modif-tips');
               btn_modif.innerText = 'Modifier'; 
+
+              const modalDiv = document.createElement('div');
+              modalDiv.classList.add('modal', 'fade');
+              modalDiv.id = 'modif-tips';
+              modalDiv.setAttribute('tabindex', '-1');
+              modalDiv.setAttribute('role', 'dialog');
+              modalDiv.setAttribute('aria-labelledby', 'myModalLabel');
+
+              const modalDialogDiv = document.createElement('div');
+              modalDialogDiv.classList.add('modal-dialog');
+              modalDialogDiv.setAttribute('role', 'document');
+
+              const modalContentDiv = document.createElement('div');
+              modalContentDiv.classList.add('modal-content');
+
+              const modalHeaderDiv = document.createElement('div');
+              modalHeaderDiv.classList.add('modal-header');
+              modalHeaderDiv.innerHTML = '<div class="title">Modifier le Tips</div>';
+
+              const form = document.createElement('form');
+              form.classList.add('form_admin');
+
+              const modalBodyDiv = document.createElement('div');
+              modalBodyDiv.classList.add('modal-body');
+
+              const nomTipsLabel = document.createElement('label');
+              nomTipsLabel.setAttribute('for', 'nom_tips');
+
+              const nomTipsInput = document.createElement('input');
+              nomTipsInput.setAttribute('type', 'text');
+              nomTipsInput.setAttribute('placeholder', 'Nom du tips');
+              nomTipsInput.classList.add('input');
+              nomTipsInput.id = 'nom_tips';
+              nomTipsInput.name = 'nom_tips';
+              nomTipsInput.required = true;
+
+              const descriptionLabel = document.createElement('label');
+              descriptionLabel.setAttribute('for', 'description');
+
+              const descriptionTextarea = document.createElement('textarea');
+              descriptionTextarea.id = 'description';
+              descriptionTextarea.name = 'description';
+              descriptionTextarea.required = true;
+              descriptionTextarea.setAttribute('placeholder', 'Description');
+
+              const addButtonSubmit = document.createElement('button');
+              addButtonSubmit.id = 'submit';
+              addButtonSubmit.setAttribute('type', 'submit');
+              addButtonSubmit.innerText = 'Enregistrer les modifications';
+              btn_supp.addEventListener('click', () => {
+                tips.preventDefault(); // Empêche le rechargement de la page
+
+try {
+  const tipsmodifié = parseInt(event.target.elements.nom_tips.value); // Récupère l'identifiant de l'annonce
+
+    const nom_tips = event.target.elements.nom_tips.value
+    if (nom_tips) {
+      tips.nom_tips = nom_tips;
+    }
+    const description = event.target.elements.description.value
+    if (description) {
+      tips.description = description;
+    }
+
+  const Json = JSON.stringify(tips);
+  const response = fetch(`https://terrashift-backend.onrender.com/api/tips/${tips.nom_tips}`, { // Utilise l'URL avec l'identifiant de l'annonce
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: Json,
+  });
+
+  if (response.ok) {
+    console.log("Requête réussie !");
+    setTimeout(function() {location.reload()}, 500);
+  } else {
+    console.error("Erreur lors de la requête :", response.status);
+  }
+} catch (error) {
+  console.error("Erreur lors de la requête :", error);
+}
+});
+
+              // Construction de la structure de la fenêtre modale
+              modalContentDiv.appendChild(modalHeaderDiv);
+              modalBodyDiv.appendChild(nomTipsLabel);
+              modalBodyDiv.appendChild(nomTipsInput);
+              modalBodyDiv.appendChild(descriptionLabel);
+              modalBodyDiv.appendChild(descriptionTextarea);
+              modalBodyDiv.appendChild(addButtonSubmit);
+              form.appendChild(modalBodyDiv);
+              modalContentDiv.appendChild(form);
+              modalDialogDiv.appendChild(modalContentDiv);
+              modalDiv.appendChild(modalDialogDiv);
 
               const cardImage = document.createElement('div');
               cardImage.classList.add('card-image');
@@ -177,9 +272,10 @@ method: 'GET',
               cardVerso.appendChild(description);
               cardVerso.appendChild(btn_supp);
               cardVerso.appendChild(btn_modif);
+              cardVerso.appendChild(modalDiv);
   
               card.appendChild(cardVerso);
-              card.appendChild(cardRecto)
+              card.appendChild(cardRecto);
           tipsContainer.appendChild(card);
           });
       })
